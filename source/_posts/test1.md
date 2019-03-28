@@ -6,3 +6,16 @@ tags:
  - 标签1
  - 标签2
 ---
+
+
+```
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+	std::cout << "hahahah" << std::endl;
+	return 0;
+}
+```
