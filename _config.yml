@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 晃晃的博客
 subtitle:
-description:
+description: 大道至简，九九归一
 keywords:
-author: John Doe
-language:
+author: Clancy Lian
+language: zh-Hans
 timezone:
 
 # URL
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -81,3 +81,20 @@ deploy:
   type: git
   repo: https://github.com/clancylian/clancylian.github.io.git
   branch: master
+
+# 搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+  
+# RSS订阅
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
