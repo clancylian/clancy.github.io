@@ -367,7 +367,7 @@
      </li>
      <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="{{ url_for(page.path) }}" title="{{ page.title }}">{{ page.path }}</a>
+	  <a href="{{ url_for(page.permalink ) }}" title="{{ page.title }}">{{ page.permalink }}</a>
      </li>
      <li class="post-copyright-license">
       <strong>版权： </strong>
