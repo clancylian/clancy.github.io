@@ -8,7 +8,7 @@ tags:
 ---
 
 
-```
+```c++
 #include <vector>
 
 using namespace std;
@@ -18,4 +18,8 @@ int main()
 	std::cout << "hahahah" << std::endl;
 	return 0;
 }
+```
+
+```py
+import 
 ```
