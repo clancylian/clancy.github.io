@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-04-29T02:51:29.550Z</updated>
+  <updated>2019-04-29T03:31:37.040Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>opencv GPU和CPUX实现直方图均衡差异</title>
+    <link href="https://clancylian.github.io/2019/04/29/opencv-GPU%E5%92%8CCPUX%E5%AE%9E%E7%8E%B0%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%B7%AE%E5%BC%82/"/>
+    <id>https://clancylian.github.io/2019/04/29/opencv-GPU和CPUX实现直方图均衡差异/</id>
+    <published>2019-04-29T03:27:13.000Z</published>
+    <updated>2019-04-29T03:31:37.040Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;opencv gpu和cpu实现直方图均衡会出现不同，版本3.3.1，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="opencv" scheme="https://clancylian.github.io/categories/opencv/"/>
+    
+    
+      <category term="opencv" scheme="https://clancylian.github.io/tags/opencv/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NVIDIA NPP LIBRARY SDK</title>
     <link href="https://clancylian.github.io/2019/04/29/NVIDIA-NPP-LIBRARY-SDK/"/>
     <id>https://clancylian.github.io/2019/04/29/NVIDIA-NPP-LIBRARY-SDK/</id>
     <published>2019-04-29T02:44:47.000Z</published>
-    <updated>2019-04-29T02:51:29.550Z</updated>
+    <updated>2019-04-29T03:20:51.081Z</updated>
     
     <summary type="html">
     
