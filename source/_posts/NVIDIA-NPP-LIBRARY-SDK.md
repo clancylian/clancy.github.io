@@ -90,6 +90,8 @@ resize库包含在**nppig**库里面，其中还有各种操作，包括mirror�
 
 ##　颜色转换
 
+
+
 ## 自己实现一些操作
 
 ### padding
@@ -198,6 +200,130 @@ void convertBGR2RGBfloat(void *src, void *dst, int width, int height, cudaStream
     dim3 blocks(32, 32);
     convertBGR2RGBfloatKernel<<<grids, blocks>>>((uchar3 *)src, (float3 *)dst, width, height);
 }
+```
+
+### RGBA2Gray
+
+```c++
+__global__ void convertRGBA2GrayKernel(uchar4 *src, uchar1 *dst, int width, int height)
+{
+    int x = threadIdx.x + blockIdx.x * blockDim.x;
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    if (x >= width || y >= height) {
+        return;
+    }
+
+    uchar4 color = src[y * width + x];
+
+    //dst[y * width + x] = make_uchar1((color.x+color.y+color.z) * .333333f);
+    dst[y * width + x] = make_uchar1(0.114f * color.x + 0.587f * color.y + 0.299f * color.z);
+}
+
+void convertRGBA2Gray(void *src, void *dst, int width, int height, cudaStream_t stream)
+{
+    dim3 grids((width + 31) / 32, (height + 31) / 32);
+    dim3 blocks(32, 32);
+    convertRGBA2GrayKernel<<<grids, blocks, 0, stream>>>((uchar4 *)src, (uchar1 *)dst, width, height);
+//    cudaDeviceSynchronize();
+    cudaStreamSynchronize(stream);
+}
+```
+
+### RGBA2BGR
+
+```c++
+__global__ void convertRGBA2BGRKernel(uchar4 *src, uchar3 *dst, int width, int height)
+{
+    int x = threadIdx.x + blockIdx.x * blockDim.x;
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    if (x >= width || y >= height) {
+        return;
+    }
+
+    uchar4 color = src[y * width + x];
+    dst[y * width + x] = make_uchar3(color.z, color.y, color.x);
+}
+
+void convertRGBA2BGR(void *src, void *dst, int width, int height, cudaStream_t stream)
+{
+    dim3 grids((width + 31) / 32, (height + 31) / 32);
+    dim3 blocks(32, 32);
+    convertRGBA2BGRKernel<<<grids, blocks, 0, stream>>>((uchar4 *)src, (uchar3 *)dst, width, height);
+}
+```
+
+### TX2 nvx实现RGBA2YUVI420
+
+```c++
+void convertRGBA2YUVI420(void *src, void *dst, int width, int height)
+{
+    static bool inited = false;
+    static nvxcu_stream_exec_target_t exec_target;
+
+    if (!inited) {
+        int deviceID;
+        /*HANDLE_CUDA_ERROR*/(cudaGetDevice(&deviceID));
+        exec_target.base.exec_target_type = NVXCU_STREAM_EXEC_TARGET;
+        exec_target.stream = NULL;
+        /*HANDLE_CUDA_ERROR*/(cudaGetDeviceProperties(&exec_target.dev_prop, deviceID));
+        inited = true;
+    }
+
+    nvxcu_pitch_linear_image_t input, output;
+    input.base.format = NVXCU_DF_IMAGE_RGBX;
+    input.base.width = width;
+    input.base.height = height;
+    input.base.image_type = NVXCU_PITCH_LINEAR_IMAGE;
+    input.planes[0].dev_ptr = src;
+    input.planes[0].pitch_in_bytes = width * 4;
+
+    output.base.format = NVXCU_DF_IMAGE_IYUV;
+    output.base.width = width;
+    output.base.height = height;
+    output.base.image_type = NVXCU_PITCH_LINEAR_IMAGE;
+    output.planes[0].dev_ptr = dst;
+    output.planes[0].pitch_in_bytes = width;
+    output.planes[1].dev_ptr = (char *)dst + width * height;
+    output.planes[1].pitch_in_bytes = width / 2;
+    output.planes[2].dev_ptr = (char *)dst + width * height * 5 / 4;
+    output.planes[2].pitch_in_bytes = width / 2;
+
+    nvxcu_error_status_e stat;
+    stat = nvxcuColorConvert(&input.base, &output.base, NVXCU_COLOR_SPACE_DEFAULT,
+                             NVXCU_CHANNEL_RANGE_FULL, &exec_target.base);
+    if (stat != NVXCU_SUCCESS) {
+        dbgInfo("Conver RGB to YUVI420 failed: %d.\n", stat);
+    }
+}
+```
+
+### 叠加图片
+
+```c++
+__global__ void cudaPutLogoToImageKernel(uchar4 *devImg, int imgWidth, int imgHeight,
+                    uchar3 *devLogo, int width, int height, int offsetX, int offsetY)
+{
+    int x = threadIdx.x + blockIdx.x * blockDim.x;
+    int y = threadIdx.y + blockIdx.y * blockDim.y;
+    if (x >= width || y >= height) {
+        return;
+    }
+
+    uchar3 devLogoColor = devLogo[y * width + x];
+    int offset = (y + offsetY) * imgWidth + offsetX + x;
+    devImg[offset] = make_uchar4(devLogoColor.z, devLogoColor.y, devLogoColor.x, 0);
+}
+
+void cudaPutLogoToImage(void *devImg, int imgWidth, int imgHeight, void *devLogo, int width,
+                    int height, int offsetX, int offsetY, cudaStream_t stream)
+{
+    dim3 grids((width + 31) / 32, (height + 31) / 32);
+    dim3 blocks(32, 32);
+    //if use stream, every time the result will be error. have to test!!!
+    cudaPutLogoToImageKernel<<<grids, blocks, 0, stream>>>((uchar4 *)devImg, imgWidth, imgHeight,
+                    (uchar3 *)devLogo, width, height, offsetX, offsetY);
+}
+
 ```
 
 ##　参考链接
