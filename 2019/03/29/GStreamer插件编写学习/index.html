@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="GStreamer,插件,视频流,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="晃晃的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="下载插件模板1234567shell $ git clone https://gitlab.freedesktop.org/gstreamer/gst-template.gitInitialized empty Git repository in /some/path/gst-template/.git/remote: Counting objects: 373, done.remote: Com">
+<meta name="keywords" content="GStreamer,插件,视频流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GStreamer插件编写学习">
+<meta property="og:url" content="https://clancylian.github.io/2019/03/29/GStreamer插件编写学习/index.html">
+<meta property="og:site_name" content="晃晃的博客">
+<meta property="og:description" content="下载插件模板1234567shell $ git clone https://gitlab.freedesktop.org/gstreamer/gst-template.gitInitialized empty Git repository in /some/path/gst-template/.git/remote: Counting objects: 373, done.remote: Com">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-29T00:47:07.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GStreamer插件编写学习">
+<meta name="twitter:description" content="下载插件模板1234567shell $ git clone https://gitlab.freedesktop.org/gstreamer/gst-template.gitInitialized empty Git repository in /some/path/gst-template/.git/remote: Counting objects: 373, done.remote: Com">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":2,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://clancylian.github.io/2019/03/29/GStreamer插件编写学习/">
+
+
+
+
+
+  <title>GStreamer插件编写学习 | 晃晃的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/clancylian" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">晃晃的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancylian.github.io/2019/03/29/GStreamer插件编写学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Clancy Lian">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晃晃的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GStreamer插件编写学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T12:31:35+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GStreamer/" itemprop="url" rel="index">
+                    <span itemprop="name">GStreamer</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/29/GStreamer插件编写学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/29/GStreamer插件编写学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+			
+		  
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="下载插件模板"><a href="#下载插件模板" class="headerlink" title="下载插件模板"></a>下载插件模板</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shell $ git clone <span class="string">https:</span><span class="comment">//gitlab.freedesktop.org/gstreamer/gst-template.git</span></span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> <span class="regexp">/some/</span>path<span class="regexp">/gst-template/</span>.git/</span><br><span class="line"><span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">373</span>, done.</span><br><span class="line"><span class="string">remote:</span> Compressing <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">114</span>/<span class="number">114</span>), done.</span><br><span class="line"><span class="string">remote:</span> Total <span class="number">373</span> (delta <span class="number">240</span>), reused <span class="number">373</span> (delta <span class="number">240</span>)</span><br><span class="line">Receiving <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">373</span><span class="regexp">/373), 75.16 KiB | 78 KiB/</span>s, done.</span><br><span class="line">Resolving <span class="string">deltas:</span> <span class="number">100</span>% (<span class="number">240</span>/<span class="number">240</span>), done.</span><br></pre></td></tr></table></figure>
+<p><strong>以上方案有点过时，可到github下载gst-plugins-bad模块，使用里面的工具生成模板。</strong></p>
+<h1 id="使用make-element生成模板"><a href="#使用make-element生成模板" class="headerlink" title="使用make_element生成模板"></a>使用make_element生成模板</h1><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd gst-template<span class="meta-keyword">/gst-plugin/</span>src</span><br><span class="line">..<span class="meta-keyword">/tools/</span>make_element MyFilter <span class="params">&lt;基类文件如:gsttransform&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="修改makefile-am文件"><a href="#修改makefile-am文件" class="headerlink" title="修改makefile.am文件"></a>修改makefile.am文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Note: plugindir is set in configure</span><br><span class="line">##############################################################################</span><br><span class="line"># TODO: change libgstplugin.la to something else, e.g. libmysomething.la     #</span><br><span class="line">##############################################################################</span><br><span class="line">plugin_LTLIBRARIES = libgstplugin.la libgstaudiofilterexample.la</span><br><span class="line">##############################################################################</span><br><span class="line"># TODO: for the next set of variables, name the prefix if you named the .la, #</span><br><span class="line">#  e.g. libmysomething.la =&gt; libmysomething_la_SOURCES                       #</span><br><span class="line">#                            libmysomething_la_CFLAGS                        #</span><br><span class="line">#                            libmysomething_la_LIBADD                        #</span><br><span class="line">#                            libmysomething_la_LDFLAGS                       #</span><br><span class="line">##############################################################################</span><br><span class="line">## Plugin 1</span><br><span class="line"># sources used to compile this plug-in</span><br><span class="line">libgstplugin_la_SOURCES = gstplugin.c gstplugin.h</span><br><span class="line"># compiler and linker flags used to compile this plugin, set in configure.ac</span><br><span class="line">libgstplugin_la_CFLAGS = $(GST_CFLAGS)</span><br><span class="line">libgstplugin_la_LIBADD = $(GST_LIBS)</span><br><span class="line">libgstplugin_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS)</span><br><span class="line">libgstplugin_la_LIBTOOLFLAGS = --tag=disable-static</span><br><span class="line"># headers we need but don&apos;t want installed</span><br><span class="line">noinst_HEADERS = gstplugin.h</span><br></pre></td></tr></table></figure>
+<h1 id="生成makefile文件"><a href="#生成makefile文件" class="headerlink" title="生成makefile文件"></a>生成makefile文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p><strong>注意：需要修改configure.ac文件里面安装的路径，不然插件会被安装到/usr/local/lib/gstreamer-1.0中</strong> </p>
+<h1 id="Example-Demo"><a href="#Example-Demo" class="headerlink" title="Example Demo"></a>Example Demo</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gst/gst.h&gt;</span></span></span><br><span class="line"><span class="comment">/* Definition of structure storing data for this element. */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">GstMyFilter</span> &#123;</span></span><br><span class="line">  GstElement element;</span><br><span class="line">  GstPad *sinkpad, *srcpad;</span><br><span class="line">  gboolean silent;</span><br><span class="line">&#125; GstMyFilter;</span><br><span class="line">    </span><br><span class="line"><span class="comment">/* Standard definition defining a class for this element. */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">GstMyFilterClass</span> &#123;</span></span><br><span class="line">  GstElementClass parent_class;</span><br><span class="line">&#125; GstMyFilterClass;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Standard macros for defining types for this element.  */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GST_TYPE_MY_FILTER (gst_my_filter_get_type())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GST_MY_FILTER(obj) \</span></span><br><span class="line">  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_MY_FILTER,GstMyFilter))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GST_MY_FILTER_CLASS(klass) \</span></span><br><span class="line">  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_MY_FILTER,GstMyFilterClass))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GST_IS_MY_FILTER(obj) \</span></span><br><span class="line">  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_MY_FILTER))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GST_IS_MY_FILTER_CLASS(klass) \</span></span><br><span class="line">  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_MY_FILTER))</span><br><span class="line">  </span><br><span class="line"><span class="comment">/* Standard function returning type information. */</span></span><br><span class="line"><span class="function">GType <span class="title">gst_my_filter_get_type</span> <span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h1 id="Element-metadata"><a href="#Element-metadata" class="headerlink" title="Element metadata"></a>Element metadata</h1><p>元素元数据提供额外的元素信息，使用<em>gst_element_class_set_metadata</em>或者<em>gst_element_class_set_static_metadata</em>函数来设置，其参数包含：</p>
+<ul>
+<li>A long, English, name for the element.</li>
+<li>The type of the element, see the docs/design/draft-klass.txt document<br>in the GStreamer core source tree for details and examples.</li>
+<li>A brief description of the purpose of the element.</li>
+<li>The name of the author of the element, optionally followed by a<br>contact email address in angle brackets.<h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gst_element_class_set_static_metadata (klass,</span><br><span class="line"><span class="string">"An example plugin"</span>,</span><br><span class="line"><span class="string">"Example/FirstExample"</span>,</span><br><span class="line"><span class="string">"Shows the basic structure of a plugin"</span>,</span><br><span class="line"><span class="string">"your name &lt;your.name@your.isp&gt;"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="以上函数在初始化-class-init-插件的时候调用"><a href="#以上函数在初始化-class-init-插件的时候调用" class="headerlink" title="以上函数在初始化_class_init ()插件的时候调用"></a>以上函数在初始化<em>_class_init ()</em>插件的时候调用</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_class_init (GstMyFilterClass * klass)</span><br><span class="line">&#123;</span><br><span class="line">  GstElementClass *element_class = GST_ELEMENT_CLASS (klass);</span><br><span class="line"></span><br><span class="line">[..]</span><br><span class="line">  gst_element_class_set_static_metadata (element_klass,</span><br><span class="line">    <span class="string">"An example plugin"</span>,</span><br><span class="line">    <span class="string">"Example/FirstExample"</span>,</span><br><span class="line">    <span class="string">"Shows the basic structure of a plugin"</span>,</span><br><span class="line">    <span class="string">"your name &lt;your.name@your.isp&gt;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GstStaticPadTemplate"><a href="#GstStaticPadTemplate" class="headerlink" title="GstStaticPadTemplate"></a>GstStaticPadTemplate</h1><p>GstStaticPadTemplate是用来描述将要创建的pad的信息，包含:</p>
+<ul>
+<li>A short name for the pad.</li>
+<li>Pad direction.</li>
+<li>Existence property. This indicates whether the pad exists always (an “always” pad), only in some cases (a “sometimes” pad) or only if the application requested such a pad (a “request” pad).</li>
+<li>Supported types by this element (capabilities).<h4 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> GstStaticPadTemplate sink_factory =</span><br><span class="line">GST_STATIC_PAD_TEMPLATE (</span><br><span class="line">  <span class="string">"sink"</span>,         <span class="comment">//名称</span></span><br><span class="line">  GST_PAD_SINK,   <span class="comment">//方向sink or src</span></span><br><span class="line">  GST_PAD_ALWAYS,   <span class="comment">//availability</span></span><br><span class="line">  GST_STATIC_CAPS (<span class="string">"ANY"</span>)  <span class="comment">//capability</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>同样该<em>sink_factory</em>也是在初始化时候使用，通过<em>gst_element_class_add_pad_template ()</em>和<em>gst_static_pad_template_get ()</em>来调用<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> GstStaticPadTemplate sink_factory = [..],</span><br><span class="line">    src_factory = [..];</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_class_init (GstMyFilterClass * klass)</span><br><span class="line">&#123;</span><br><span class="line">  GstElementClass *element_class = GST_ELEMENT_CLASS (klass);</span><br><span class="line">[..]</span><br><span class="line"></span><br><span class="line">  gst_element_class_add_pad_template (element_class,</span><br><span class="line">    gst_static_pad_template_get (&amp;src_factory));</span><br><span class="line">  gst_element_class_add_pad_template (element_class,</span><br><span class="line">    gst_static_pad_template_get (&amp;sink_factory));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>该pad将在构造函数<em>_init ()</em>函数中使用<em>gst_pad_new_from_static_template ()</em>来创建。</p>
+<p><strong>注：对于每个element来说，有两个构造函数，其中<em>_class_init()</em>函数只调用一次，用来说明类所拥有的信号、参数、虚函数以及设置全局状态；<em>_init()</em>函数则用在初始化实例特定的实例。</strong></p>
+<h1 id="插件初始化函数"><a href="#插件初始化函数" class="headerlink" title="插件初始化函数"></a>插件初始化函数</h1><p>当我们写完插件的所有部件之后，需要编写插件的初始化函数，这个函数在插件加载的时候调用，需要返回TRUE or FALSE来觉得是否正确加载。在这个函数中，任何支持的element插件应该被注册。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> gboolean</span><br><span class="line">plugin_init (GstPlugin *plugin)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> gst_element_register (plugin, <span class="string">"my_filter"</span>,</span><br><span class="line">                   GST_RANK_NONE,</span><br><span class="line">                   GST_TYPE_MY_FILTER);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GST_PLUGIN_DEFINE (</span><br><span class="line">  GST_VERSION_MAJOR,</span><br><span class="line">  GST_VERSION_MINOR,</span><br><span class="line">  my_filter,</span><br><span class="line">  <span class="string">"My filter plugin"</span>,</span><br><span class="line">  plugin_init,</span><br><span class="line">  VERSION,</span><br><span class="line">  <span class="string">"LGPL"</span>,</span><br><span class="line">  <span class="string">"GStreamer"</span>,</span><br><span class="line">  <span class="string">"http://gstreamer.net/"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h1 id="pads具体说明"><a href="#pads具体说明" class="headerlink" title="pads具体说明"></a>pads具体说明</h1><p>PADS是数据流进出每个element的端口，在初始化<em>_init ()</em>函数中，你从pad template中创建了一个pad，这个pad template是在<em>_class_init ()</em>函数中注册的，创建了pad之后，你必须在sinkpad设置<em>_chain ()</em>函数指针用来接收和处理数据。可选的，你也可以设置<em>_event ()</em>和<em>_query ()</em>指针；pad亦可以使用循环模式，这意味着它们可以自己拉取数据。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_init (GstMyFilter *filter)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* pad through which data comes in to the element */</span></span><br><span class="line">  filter-&gt;sinkpad = gst_pad_new_from_static_template (</span><br><span class="line">    &amp;sink_template, <span class="string">"sink"</span>);</span><br><span class="line">  <span class="comment">/* pads are configured here with gst_pad_set_*_function () */</span></span><br><span class="line"></span><br><span class="line">  gst_element_add_pad (GST_ELEMENT (filter), filter-&gt;sinkpad);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* pad through which data goes out of the element */</span></span><br><span class="line">  filter-&gt;srcpad = gst_pad_new_from_static_template (</span><br><span class="line">    &amp;src_template, <span class="string">"src"</span>);</span><br><span class="line">  <span class="comment">/* pads are configured here with gst_pad_set_*_function () */</span></span><br><span class="line">    </span><br><span class="line">  gst_element_add_pad (GST_ELEMENT (filter), filter-&gt;srcpad);</span><br><span class="line">    </span><br><span class="line">  <span class="comment">/* properties initial value */</span></span><br><span class="line">      filter-&gt;silent = FALSE;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Sometimes-Pad"><a href="#Sometimes-Pad" class="headerlink" title="Sometimes Pad"></a>Sometimes Pad</h2><p>Sometimes pad 只有在一些特定情况下才创建，这取决于流内容。比如demuxers解析流头。每个element可以创建多个sometimes pad，唯一限制就是都要有唯一的名字。当流数据被销毁时（比如从PAUSED到READY状态），pad也应该被销毁，但是在EOS状态不应该被销毁。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">GstMyFilter</span> &#123;</span></span><br><span class="line">[..]</span><br><span class="line">  gboolean firstrun;</span><br><span class="line">  GList *srcpadlist;</span><br><span class="line">&#125; GstMyFilter;</span><br><span class="line"></span><br><span class="line"><span class="comment">//静态目标类型sometimes</span></span><br><span class="line"><span class="keyword">static</span> GstStaticPadTemplate src_factory =</span><br><span class="line">GST_STATIC_PAD_TEMPLATE (</span><br><span class="line">  <span class="string">"src_%u"</span>,</span><br><span class="line">  GST_PAD_SRC,</span><br><span class="line">  GST_PAD_SOMETIMES,</span><br><span class="line">  GST_STATIC_CAPS (<span class="string">"ANY"</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_class_init (GstMyFilterClass *klass)</span><br><span class="line">&#123;</span><br><span class="line">  GstElementClass *element_class = GST_ELEMENT_CLASS (klass);</span><br><span class="line">[..]</span><br><span class="line"><span class="comment">//注册pad</span></span><br><span class="line">  gst_element_class_add_pad_template (element_class,</span><br><span class="line">    gst_static_pad_template_get (&amp;src_factory));</span><br><span class="line">[..]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_init (GstMyFilter *filter)</span><br><span class="line">&#123;</span><br><span class="line">[..]</span><br><span class="line">  filter-&gt;firstrun = TRUE;</span><br><span class="line">  filter-&gt;srcpadlist = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Get one line of data - without newline.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GstBuffer *</span><br><span class="line">gst_my_filter_getline (GstMyFilter *filter)</span><br><span class="line">&#123;</span><br><span class="line">  guint8 *data;</span><br><span class="line">  gint n, num;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* max. line length is 512 characters - for safety */</span></span><br><span class="line">  <span class="keyword">for</span> (n = <span class="number">0</span>; n &lt; <span class="number">512</span>; n++) &#123;</span><br><span class="line">    num = gst_bytestream_peek_bytes (filter-&gt;bs, &amp;data, n + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (num != n + <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* newline? */</span></span><br><span class="line">    <span class="keyword">if</span> (data[n] == <span class="string">'\n'</span>) &#123;</span><br><span class="line">      GstBuffer *buf = gst_buffer_new_allocate (<span class="literal">NULL</span>, n + <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">      gst_bytestream_peek_bytes (filter-&gt;bs, &amp;data, n);</span><br><span class="line">      gst_buffer_fill (buf, <span class="number">0</span>, data, n);</span><br><span class="line">      gst_buffer_memset (buf, n, <span class="string">'\0'</span>, <span class="number">1</span>);</span><br><span class="line">      gst_bytestream_flush_fast (filter-&gt;bs, n + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> buf;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_loopfunc (GstElement *element)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (element);</span><br><span class="line">  GstBuffer *buf;</span><br><span class="line">  GstPad *pad;</span><br><span class="line">  GstMapInfo <span class="built_in">map</span>;</span><br><span class="line">  gint num, n;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* parse header */</span></span><br><span class="line">  <span class="keyword">if</span> (filter-&gt;firstrun) &#123;</span><br><span class="line">    gchar *padname;</span><br><span class="line">    guint8 id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!(buf = gst_my_filter_getline (filter))) &#123;</span><br><span class="line">      gst_element_error (element, STREAM, READ, (<span class="literal">NULL</span>),</span><br><span class="line">             (<span class="string">"Stream contains no header"</span>));</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    gst_buffer_extract (buf, <span class="number">0</span>, &amp;id, <span class="number">1</span>);</span><br><span class="line">    num = atoi (id);</span><br><span class="line">    gst_buffer_unref (buf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* for each of the streams, create a pad */</span></span><br><span class="line">    <span class="comment">//根据头的流个数，创建num个pad</span></span><br><span class="line">    <span class="keyword">for</span> (n = <span class="number">0</span>; n &lt; num; n++) &#123;</span><br><span class="line">      padname = g_strdup_printf (<span class="string">"src_%u"</span>, n);</span><br><span class="line">      pad = gst_pad_new_from_static_template (src_factory, padname);</span><br><span class="line">      g_free (padname);</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* here, you would set _event () and _query () functions */</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">/* need to activate the pad before adding */</span></span><br><span class="line">      gst_pad_set_active (pad, TRUE);</span><br><span class="line"></span><br><span class="line">      gst_element_add_pad (element, pad);</span><br><span class="line">      filter-&gt;srcpadlist = g_list_append (filter-&gt;srcpadlist, pad);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* and now, simply parse each line and push over */</span></span><br><span class="line">  <span class="keyword">if</span> (!(buf = gst_my_filter_getline (filter))) &#123;</span><br><span class="line">    GstEvent *event = gst_event_new (GST_EVENT_EOS);</span><br><span class="line">    GList *padlist;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (padlist = srcpadlist;</span><br><span class="line">         padlist != <span class="literal">NULL</span>; padlist = g_list_next (padlist)) &#123;</span><br><span class="line">      pad = GST_PAD (padlist-&gt;data);</span><br><span class="line">      gst_pad_push_event (pad, gst_event_ref (event));</span><br><span class="line">    &#125;</span><br><span class="line">    gst_event_unref (event);</span><br><span class="line">    <span class="comment">/* pause the task here */</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* parse stream number and go beyond the ':' in the data */</span></span><br><span class="line">  gst_buffer_map (buf, &amp;<span class="built_in">map</span>, GST_MAP_READ);</span><br><span class="line">  num = atoi (<span class="built_in">map</span>.data[<span class="number">0</span>]);</span><br><span class="line">  <span class="keyword">if</span> (num &gt;= <span class="number">0</span> &amp;&amp; num &lt; g_list_length (filter-&gt;srcpadlist)) &#123;</span><br><span class="line">  <span class="comment">//取第N个pad塞数据</span></span><br><span class="line">    pad = GST_PAD (g_list_nth_data (filter-&gt;srcpadlist, num);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* magic buffer parsing foo */</span></span><br><span class="line">    <span class="keyword">for</span> (n = <span class="number">0</span>; <span class="built_in">map</span>.data[n] != <span class="string">':'</span> &amp;&amp;</span><br><span class="line">                <span class="built_in">map</span>.data[n] != <span class="string">'\0'</span>; n++) ;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">map</span>.data[n] != <span class="string">'\0'</span>) &#123;</span><br><span class="line">      GstBuffer *sub;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* create region copy that starts right past the space. The reason</span></span><br><span class="line"><span class="comment">       * that we don't just forward the data pointer is because the</span></span><br><span class="line"><span class="comment">       * pointer is no longer the start of an allocated block of memory,</span></span><br><span class="line"><span class="comment">       * but just a pointer to a position somewhere in the middle of it.</span></span><br><span class="line"><span class="comment">       * That cannot be freed upon disposal, so we'd either crash or have</span></span><br><span class="line"><span class="comment">       * a memleak. Creating a region copy is a simple way to solve that. */</span></span><br><span class="line">      sub = gst_buffer_copy_region (buf, GST_BUFFER_COPY_ALL,</span><br><span class="line">          n + <span class="number">1</span>, <span class="built_in">map</span>.size - n - <span class="number">1</span>);</span><br><span class="line">      gst_pad_push (pad, sub);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  gst_buffer_unmap (buf, &amp;<span class="built_in">map</span>);</span><br><span class="line">  gst_buffer_unref (buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Request-pad"><a href="#Request-pad" class="headerlink" title="Request pad"></a>Request pad</h2><p>Request pad 只有在外部需要的时候才创建而不是element内部。比如tee element可以根据需要拷贝多份数据到不同的分支。需要实现<em>request_new_pad</em>和<em>release_pad</em>两个虚函数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> GstPad * <span class="title">gst_my_filter_request_new_pad</span>   <span class="params">(GstElement     *element,</span></span></span><br><span class="line"><span class="function"><span class="params">                         GstPadTemplate *templ,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                 <span class="keyword">const</span> gchar    *name,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                 <span class="keyword">const</span> GstCaps  *caps)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gst_my_filter_release_pad</span> <span class="params">(GstElement *element,</span></span></span><br><span class="line"><span class="function"><span class="params">                                       GstPad *pad)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GstStaticPadTemplate sink_factory =</span><br><span class="line">GST_STATIC_PAD_TEMPLATE (</span><br><span class="line">  <span class="string">"sink_%u"</span>,</span><br><span class="line">  GST_PAD_SINK,</span><br><span class="line">  GST_PAD_REQUEST,</span><br><span class="line">  GST_STATIC_CAPS (<span class="string">"ANY"</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_class_init (GstMyFilterClass *klass)</span><br><span class="line">&#123;</span><br><span class="line">  GstElementClass *element_class = GST_ELEMENT_CLASS (klass);</span><br><span class="line">[..]</span><br><span class="line">  gst_element_class_add_pad_template (klass,</span><br><span class="line">    gst_static_pad_template_get (&amp;sink_factory));</span><br><span class="line">[..]</span><br><span class="line">  element_class-&gt;request_new_pad = gst_my_filter_request_new_pad;</span><br><span class="line">  element_class-&gt;release_pad = gst_my_filter_release_pad;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GstPad *</span><br><span class="line">gst_my_filter_request_new_pad (GstElement     *element,</span><br><span class="line">                   GstPadTemplate *templ,</span><br><span class="line">                   <span class="keyword">const</span> gchar    *name,</span><br><span class="line">                               <span class="keyword">const</span> GstCaps  *caps)</span><br><span class="line">&#123;</span><br><span class="line">  GstPad *pad;</span><br><span class="line">  GstMyFilterInputContext *context;</span><br><span class="line"></span><br><span class="line">  context = g_new0 (GstMyFilterInputContext, <span class="number">1</span>);</span><br><span class="line">  pad = gst_pad_new_from_template (templ, name);</span><br><span class="line">  gst_pad_set_element_private (pad, context);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* normally, you would set _chain () and _event () functions here */</span></span><br><span class="line"></span><br><span class="line">  gst_element_add_pad (element, pad);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> pad;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_release_pad (GstElement *element,</span><br><span class="line">                           GstPad *pad)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilterInputContext *context;</span><br><span class="line"></span><br><span class="line">  context = gst_pad_get_element_private (pad);</span><br><span class="line">  g_free (context);</span><br><span class="line"></span><br><span class="line">  gst_element_remove_pad (element, pad);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="The-chain-function"><a href="#The-chain-function" class="headerlink" title="The chain function"></a>The chain function</h1><p>chain函数是处理数据的地方，记住buffers并不总是可写的。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> GstFlowReturn <span class="title">gst_my_filter_chain</span> <span class="params">(GstPad    *pad,</span></span></span><br><span class="line"><span class="function"><span class="params">                                          GstObject *parent,</span></span></span><br><span class="line"><span class="function"><span class="params">                                          GstBuffer *buf)</span></span>;</span><br><span class="line"></span><br><span class="line">[..]</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_init (GstMyFilter * filter)</span><br><span class="line">&#123;</span><br><span class="line">[..]</span><br><span class="line">  <span class="comment">/* configure chain function on the pad before adding</span></span><br><span class="line"><span class="comment">   * the pad to the element */</span></span><br><span class="line">  gst_pad_set_chain_function (filter-&gt;sinkpad,</span><br><span class="line">      gst_my_filter_chain);</span><br><span class="line">[..]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GstFlowReturn</span><br><span class="line">gst_my_filter_chain (GstPad    *pad,</span><br><span class="line">                     GstObject *parent,</span><br><span class="line">             GstBuffer *buf)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (parent);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!filter-&gt;silent)</span><br><span class="line">    g_print (<span class="string">"Have data of size %"</span> G_GSIZE_FORMAT<span class="string">" bytes!\n"</span>,</span><br><span class="line">        gst_buffer_get_size (buf));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> gst_pad_push (filter-&gt;srcpad, buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="The-event-function"><a href="#The-event-function" class="headerlink" title="The event function"></a>The event function</h1><p>在一些高级的element中，需要设置event处理函数。它通知一些发生在数据流中的特定事件，比如（caps, end-of-stream, newsegment, tags, etc.），事件可以传播到上游和下游，所以你可以在sink pads和source pads接收到。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_init (GstMyFilter * filter)</span><br><span class="line">&#123;</span><br><span class="line">[..]</span><br><span class="line">  gst_pad_set_event_function (filter-&gt;sinkpad,</span><br><span class="line">      gst_my_filter_sink_event);</span><br><span class="line">[..]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> gboolean</span><br><span class="line">gst_my_filter_sink_event (GstPad    *pad,</span><br><span class="line">                  GstObject *parent,</span><br><span class="line">                  GstEvent  *event)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (parent);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (GST_EVENT_TYPE (event)) &#123;</span><br><span class="line">    <span class="keyword">case</span> GST_EVENT_CAPS:</span><br><span class="line">      <span class="comment">/* we should handle the format here */</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> GST_EVENT_EOS:</span><br><span class="line">      <span class="comment">/* end-of-stream, we should close down all stream leftovers here */</span></span><br><span class="line">      gst_my_filter_stop_processing (filter);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> gst_pad_event_default (pad, parent, event);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GstFlowReturn</span><br><span class="line">gst_my_filter_chain (GstPad    *pad,</span><br><span class="line">             GstObject *parent,</span><br><span class="line">             GstBuffer *buf)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (parent);</span><br><span class="line">  GstBuffer *outbuf;</span><br><span class="line"></span><br><span class="line">  outbuf = gst_my_filter_process_data (filter, buf);</span><br><span class="line">  gst_buffer_unref (buf);</span><br><span class="line">  <span class="keyword">if</span> (!outbuf) &#123;</span><br><span class="line">    <span class="comment">/* something went wrong - signal an error */</span></span><br><span class="line">    GST_ELEMENT_ERROR (GST_ELEMENT (filter), STREAM, FAILED, (<span class="literal">NULL</span>), (<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">return</span> GST_FLOW_ERROR;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> gst_pad_push (filter-&gt;srcpad, outbuf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="The-query-function"><a href="#The-query-function" class="headerlink" title="The query function"></a>The query function</h1><p>通过query函数，element可以接收查询事件并作出回复，比如（position, duration，supported formats，scheduling modes）。查询同样可以传播到上下游，你可以在sink pads和source pads接收到。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> gboolean <span class="title">gst_my_filter_src_query</span> <span class="params">(GstPad    *pad,</span></span></span><br><span class="line"><span class="function"><span class="params">                                         GstObject *parent,</span></span></span><br><span class="line"><span class="function"><span class="params">                                         GstQuery  *query)</span></span>;</span><br><span class="line"></span><br><span class="line">[..]</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_init (GstMyFilter * filter)</span><br><span class="line">&#123;</span><br><span class="line">[..]</span><br><span class="line">  <span class="comment">/* configure event function on the pad before adding</span></span><br><span class="line"><span class="comment">   * the pad to the element */</span></span><br><span class="line">  gst_pad_set_query_function (filter-&gt;srcpad,</span><br><span class="line">      gst_my_filter_src_query);</span><br><span class="line">[..]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> gboolean</span><br><span class="line">gst_my_filter_src_query (GstPad    *pad,</span><br><span class="line">                 GstObject *parent,</span><br><span class="line">                 GstQuery  *query)</span><br><span class="line">&#123;</span><br><span class="line">  gboolean ret;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (parent);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (GST_QUERY_TYPE (query)) &#123;</span><br><span class="line">    <span class="keyword">case</span> GST_QUERY_POSITION:</span><br><span class="line">      <span class="comment">/* we should report the current position */</span></span><br><span class="line">      [...]</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> GST_QUERY_DURATION:</span><br><span class="line">      <span class="comment">/* we should report the duration here */</span></span><br><span class="line">      [...]</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> GST_QUERY_CAPS:</span><br><span class="line">      <span class="comment">/* we should report the supported caps here */</span></span><br><span class="line">      [...]</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="comment">/* just call the default handler */</span></span><br><span class="line">      ret = gst_pad_query_default (pad, parent, query);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="element状态"><a href="#element状态" class="headerlink" title="element状态"></a>element状态</h1><p>状态可以用来描述element是否初始化，是否准备传送数据，是否正在处理数据。</p>
+<ul>
+<li>GST_STATE_NULL element默认状态，不分配任何资源，不加载任何库。</li>
+<li>GST_STATE_READY 分配默认资源(runtime-libraries, runtime-memory)，不分配或者定义stream-specific相关的资源，当状态从NULL到READY时，分配任何non-stream-specific资源，加载运行时库。当状态从READY转到NULL时，卸载相关资源，比如硬件设备。注意文件也是流，所以在READY状态下不会分配。</li>
+<li>GST_STATE_PAUSED element准备接收和处理数据，对于大部分elements来说PAUSED和PLAYING是一样的，唯一的区别是sink elements，它只接收一次数据然后阻塞住，这时候pipeline处于’prerolled’状态，准备渲染数据。</li>
+<li>GST_STATE_PLAYING 在播放状态下sink elements渲染接收的数据，其他elements和PAUSED状态一样。</li>
+</ul>
+<h3 id="管理filter状态"><a href="#管理filter状态" class="headerlink" title="管理filter状态"></a>管理filter状态</h3><p>一般来说，elements继承一些基类，比如sources, sinks and filter/transformation elements。如果是继承这些基类，你就不需要亲自处理状态的改变。你只需继承基类的虚函数<em>start()</em>和<em>stop()</em>。如果不是继承基类，而是继承GstElement，你就必须自己处理状态的改变，比如像demuxer和muxer这种插件。通过虚函数，element可以被通知状态的改变然后初始化必要数据，也可以选择状态改变失败。</p>
+<p><strong>注意，向上（NULL =&gt; READY，READY =&gt; PAUSED，PAUSED =&gt; PLAYING）和向下（PLAYING =&gt; PAUSED，PAUSED =&gt; READY，READY =&gt; NULL）状态更改在两个单独的块中处理，向下状态发生变化只有在我们链接到父类的状态更改函数之后才会处理。这是为了安全地处理多个线程的并发访问所必需的</strong>。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> GstStateChangeReturn</span><br><span class="line">gst_my_filter_change_state (GstElement *element, GstStateChange transition);</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_class_init (GstMyFilterClass *klass)</span><br><span class="line">&#123;</span><br><span class="line">  GstElementClass *element_class = GST_ELEMENT_CLASS (klass);</span><br><span class="line"></span><br><span class="line">  element_class-&gt;change_state = gst_my_filter_change_state;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GstStateChangeReturn</span><br><span class="line">gst_my_filter_change_state (GstElement *element, GstStateChange transition)</span><br><span class="line">&#123;</span><br><span class="line">  GstStateChangeReturn ret = GST_STATE_CHANGE_SUCCESS;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (element);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (transition) &#123;</span><br><span class="line">	<span class="keyword">case</span> GST_STATE_CHANGE_NULL_TO_READY:</span><br><span class="line">	  <span class="keyword">if</span> (!gst_my_filter_allocate_memory (filter))</span><br><span class="line">		<span class="keyword">return</span> GST_STATE_CHANGE_FAILURE;</span><br><span class="line">	  <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">	  <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ret = GST_ELEMENT_CLASS (parent_class)-&gt;change_state (element, transition);</span><br><span class="line">  <span class="keyword">if</span> (ret == GST_STATE_CHANGE_FAILURE)</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (transition) &#123;</span><br><span class="line">	<span class="keyword">case</span> GST_STATE_CHANGE_READY_TO_NULL:</span><br><span class="line">	  gst_my_filter_free_memory (filter);</span><br><span class="line">	  <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">	  <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="增加属性"><a href="#增加属性" class="headerlink" title="增加属性"></a>增加属性</h1><p>通过属性可以控制element的行为。属性在<em>_class_init ()</em>函数中定义，在<em>_get_property ()</em>和<em>a _set_property ()</em>函数中设置或者获取。可以在<em>_init ()</em>构造函数中初始化属性值。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* properties */</span></span><br><span class="line"><span class="keyword">enum</span> &#123;</span><br><span class="line">  PROP_0,</span><br><span class="line">  PROP_SILENT</span><br><span class="line">  <span class="comment">/* FILL ME */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gst_my_filter_set_property</span>  <span class="params">(GObject      *object,</span></span></span><br><span class="line"><span class="function"><span class="params">                         guint         prop_id,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">const</span> GValue *value,</span></span></span><br><span class="line"><span class="function"><span class="params">                         GParamSpec   *pspec)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">gst_my_filter_get_property</span>  <span class="params">(GObject      *object,</span></span></span><br><span class="line"><span class="function"><span class="params">                         guint         prop_id,</span></span></span><br><span class="line"><span class="function"><span class="params">                         GValue       *value,</span></span></span><br><span class="line"><span class="function"><span class="params">                         GParamSpec   *pspec)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_class_init (GstMyFilterClass *klass)</span><br><span class="line">&#123;</span><br><span class="line">  GObjectClass *object_class = G_OBJECT_CLASS (klass);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* define virtual function pointers */</span></span><br><span class="line">  object_class-&gt;set_property = gst_my_filter_set_property;</span><br><span class="line">  object_class-&gt;get_property = gst_my_filter_get_property;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* define properties */</span></span><br><span class="line">  g_object_class_install_property (object_class, PROP_SILENT,</span><br><span class="line">    g_param_spec_boolean (<span class="string">"silent"</span>, <span class="string">"Silent"</span>,</span><br><span class="line">              <span class="string">"Whether to be very verbose or not"</span>,</span><br><span class="line">              FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_set_property (GObject      *object,</span><br><span class="line">                guint         prop_id,</span><br><span class="line">                <span class="keyword">const</span> GValue *value,</span><br><span class="line">                GParamSpec   *pspec)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (object);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (prop_id) &#123;</span><br><span class="line">    <span class="keyword">case</span> PROP_SILENT:</span><br><span class="line">      filter-&gt;silent = g_value_get_boolean (value);</span><br><span class="line">      g_print (<span class="string">"Silent argument was changed to %s\n"</span>,</span><br><span class="line">           filter-&gt;silent ? <span class="string">"true"</span> : <span class="string">"false"</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">gst_my_filter_get_property (GObject    *object,</span><br><span class="line">                guint       prop_id,</span><br><span class="line">                GValue     *value,</span><br><span class="line">                GParamSpec *pspec)</span><br><span class="line">&#123;</span><br><span class="line">  GstMyFilter *filter = GST_MY_FILTER (object);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (prop_id) &#123;</span><br><span class="line">    <span class="keyword">case</span> PROP_SILENT:</span><br><span class="line">      g_value_set_boolean (value, filter-&gt;silent);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="两种调度模式"><a href="#两种调度模式" class="headerlink" title="两种调度模式"></a>两种调度模式</h1><p>Gstreamer 有两种调度模式</p>
+<ul>
+<li>push mode</li>
+<li>pull mode</li>
+</ul>
+<p>我们之前讨论的<em>_chain ()</em>函数属于push mode，通过调用<em>gst_pad_push ()</em>，使得下游的element的<em>_chain ()</em>被调用。</p>
+<p>后续补充</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+	<div> 
+    
+    
+    <ul class="post-copyright">
+     <li class="post-copyright-author">
+      <strong>本文作者：</strong>Clancy Lian
+     </li>
+     <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+	  <a href="https://clancylian.github.io/2019/03/29/GStreamer插件编写学习/" title="GStreamer插件编写学习">https://clancylian.github.io/2019/03/29/GStreamer插件编写学习/</a>
+     </li>
+     <li class="post-copyright-license">
+      <strong>版权： </strong>
+      请勿用于商业，转载注明出处！
+     </li>
+    </ul>
+    
+    </div>
+	
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GStreamer/" rel="tag"><i class="fa fa-tag"></i> GStreamer</a>
+          
+            <a href="/tags/插件/" rel="tag"><i class="fa fa-tag"></i> 插件</a>
+          
+            <a href="/tags/视频流/" rel="tag"><i class="fa fa-tag"></i> 视频流</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/29/GStreamer插件之Transform-elements/" rel="next" title="GStreamer插件之Transform elements">
+                <i class="fa fa-chevron-left"></i> GStreamer插件之Transform elements
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/2019学习计划/" rel="prev" title="2019学习计划">
+                2019学习计划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Clancy Lian">
+            
+              <p class="site-author-name" itemprop="name">Clancy Lian</p>
+              <p class="site-description motion-element" itemprop="description">我自风情万种，与世无争。</p>
+          </div>
+		  
+		  <div id="music163player">
+		    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=440759879&auto=1&height=66"></iframe>
+		  </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/clancylian" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="clancy.lian@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载插件模板"><span class="nav-text">下载插件模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用make-element生成模板"><span class="nav-text">使用make_element生成模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改makefile-am文件"><span class="nav-text">修改makefile.am文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成makefile文件"><span class="nav-text">生成makefile文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-Demo"><span class="nav-text">Example Demo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Element-metadata"><span class="nav-text">Element metadata</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例如："><span class="nav-text">例如：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以上函数在初始化-class-init-插件的时候调用"><span class="nav-text">以上函数在初始化_class_init ()插件的时候调用</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#GstStaticPadTemplate"><span class="nav-text">GstStaticPadTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例如：-1"><span class="nav-text">例如：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件初始化函数"><span class="nav-text">插件初始化函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pads具体说明"><span class="nav-text">pads具体说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sometimes-Pad"><span class="nav-text">Sometimes Pad</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Request-pad"><span class="nav-text">Request pad</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-chain-function"><span class="nav-text">The chain function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-event-function"><span class="nav-text">The event function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-query-function"><span class="nav-text">The query function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#element状态"><span class="nav-text">element状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理filter状态"><span class="nav-text">管理filter状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增加属性"><span class="nav-text">增加属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两种调度模式"><span class="nav-text">两种调度模式</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Clancy Lian</span>
+
+  
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共7.8k字</span>
+</div>
+
+<div>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style="display:none">
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style="display:none">
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://clancylian.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://clancylian.github.io/2019/03/29/GStreamer插件编写学习/';
+          this.page.identifier = '2019/03/29/GStreamer插件编写学习/';
+          this.page.title = 'GStreamer插件编写学习';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://clancylian.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
