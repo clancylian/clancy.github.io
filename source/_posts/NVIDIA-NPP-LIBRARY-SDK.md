@@ -4,7 +4,7 @@ date: 2019-04-29 10:44:47
 tags:
 - NPP
 - CUDA
-categories:NVIDIA
+categories: NVIDIA
 top: 13
 ---
 
