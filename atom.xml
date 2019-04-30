@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-04-29T03:31:37.040Z</updated>
+  <updated>2019-04-30T10:28:21.887Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git 使用方法总结</title>
+    <link href="https://clancylian.github.io/2019/04/30/git-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>https://clancylian.github.io/2019/04/30/git-使用方法总结/</id>
+    <published>2019-04-30T10:27:19.000Z</published>
+    <updated>2019-04-30T10:28:21.887Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;git-使用方法总结&quot;&gt;&lt;a href=&quot;#git-使用方法总结&quot; class=&quot;headerlink&quot; title=&quot;git 使用方法总结&quot;&gt;&lt;/a&gt;git 使用方法总结&lt;/h1&gt;&lt;p&gt;比较基础的方法就不一一写了，碰到没使用过的在慢慢总结更新。&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="git" scheme="https://clancylian.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="https://clancylian.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>opencv GPU和CPUX实现直方图均衡差异</title>
