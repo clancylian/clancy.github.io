@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-05-05T08:23:39.776Z</updated>
+  <updated>2019-05-23T06:08:31.311Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -15,6 +15,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>perf 安装及使用</title>
+    <link href="https://clancylian.github.io/2019/05/23/perf%20%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
+    <id>https://clancylian.github.io/2019/05/23/perf 安装及使用/</id>
+    <published>2019-05-23T06:27:19.000Z</published>
+    <updated>2019-05-23T06:08:31.311Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;perf-安装及使用&quot;&gt;&lt;a href=&quot;#perf-安装及使用&quot; class=&quot;headerlink&quot; title=&quot;perf 安装及使用&quot;&gt;&lt;/a&gt;perf 安装及使用&lt;/h1&gt;&lt;h2 id=&quot;perf-安装&quot;&gt;&lt;a href=&quot;#perf-安装&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="perf" scheme="https://clancylian.github.io/categories/perf/"/>
+    
+    
+      <category term="perf" scheme="https://clancylian.github.io/tags/perf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PaperReading:RetinaNet</title>
+    <link href="https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/"/>
+    <id>https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/</id>
+    <published>2019-05-10T06:07:25.000Z</published>
+    <updated>2019-05-10T09:56:53.536Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Focal-Loss-for-Dense-Object-Detection&quot;&gt;&lt;a href=&quot;#Focal-Loss-for-Dense-Object-Detection&quot; class=&quot;headerlink&quot; title=&quot;Focal Loss for
+        
+      
+    
+    </summary>
+    
+      <category term="论文" scheme="https://clancylian.github.io/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="目标检测" scheme="https://clancylian.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PaperReading:RetinaFace</title>
+    <link href="https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/"/>
+    <id>https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/</id>
+    <published>2019-05-07T06:17:11.000Z</published>
+    <updated>2019-05-13T00:37:16.059Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="论文" scheme="https://clancylian.github.io/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="人脸检测" scheme="https://clancylian.github.io/tags/%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>PaperReading: FaceBoxes</title>

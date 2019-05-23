@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="目标检测,">
 
 
 
@@ -107,16 +107,20 @@
 
 
 
-<meta name="description" content="我自风情万种，与世无争。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晃晃的博客">
-<meta property="og:url" content="https://clancylian.github.io/archives/2019/03/index.html">
+<meta name="description" content="Focal Loss for Dense Object Detection代码链接　论文链接 作者提出了focal loss，通过在交叉熵损失函数中加入一个衰减系数，达到可以降低那些”分类好“的样本的损失，从而更加关注那个误分类的样本。根据这个损失函数，作者训练了一个检测器RetinaNet，性能比当前最好的two-stage检测器性能还高，在COCO数据集可以达到40.8 AP。 之前最好的目标">
+<meta name="keywords" content="目标检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading:RetinaNet">
+<meta property="og:url" content="https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/index.html">
 <meta property="og:site_name" content="晃晃的博客">
-<meta property="og:description" content="我自风情万种，与世无争。">
+<meta property="og:description" content="Focal Loss for Dense Object Detection代码链接　论文链接 作者提出了focal loss，通过在交叉熵损失函数中加入一个衰减系数，达到可以降低那些”分类好“的样本的损失，从而更加关注那个误分类的样本。根据这个损失函数，作者训练了一个检测器RetinaNet，性能比当前最好的two-stage检测器性能还高，在COCO数据集可以达到40.8 AP。 之前最好的目标">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/clancylian/blogpic/master/retinanet.png">
+<meta property="og:updated_time" content="2019-05-10T09:56:53.536Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="晃晃的博客">
-<meta name="twitter:description" content="我自风情万种，与世无争。">
+<meta name="twitter:title" content="PaperReading:RetinaNet">
+<meta name="twitter:description" content="Focal Loss for Dense Object Detection代码链接　论文链接 作者提出了focal loss，通过在交叉熵损失函数中加入一个衰减系数，达到可以降低那些”分类好“的样本的损失，从而更加关注那个误分类的样本。根据这个损失函数，作者训练了一个检测器RetinaNet，性能比当前最好的two-stage检测器性能还高，在COCO数据集可以达到40.8 AP。 之前最好的目标">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/clancylian/blogpic/master/retinanet.png">
 
 
 
@@ -146,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://clancylian.github.io/archives/2019/03/">
+  <link rel="canonical" href="https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/">
 
 
 
 
 
-  <title>归档 | 晃晃的博客</title>
+  <title>PaperReading:RetinaNet | 晃晃的博客</title>
   
 
 
@@ -171,7 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/clancylian" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,142 +311,216 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Clancy Lian">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晃晃的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">PaperReading:RetinaNet</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-10T14:07:25+08:00">
+                2019-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/论文/" itemprop="url" rel="index">
+                    <span itemprop="name">论文</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/10/PaperReading-RetinaNet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/10/PaperReading-RetinaNet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/31/2019学习计划/" itemprop="url">
-              
-                <span itemprop="name">2019学习计划</span>
-              
-            </a>
-        
-      </h2>
+          
+			
+		  
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-31T22:04:58+08:00" content="2019-03-31">
-          03-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/29/GStreamer插件编写学习/" itemprop="url">
-              
-                <span itemprop="name">GStreamer插件编写学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T12:31:35+08:00" content="2019-03-29">
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/29/GStreamer插件之Transform-elements/" itemprop="url">
-              
-                <span itemprop="name">GStreamer插件之Transform elements</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T11:41:44+08:00" content="2019-03-29">
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h1 id="Focal-Loss-for-Dense-Object-Detection"><a href="#Focal-Loss-for-Dense-Object-Detection" class="headerlink" title="Focal Loss for Dense Object Detection"></a>Focal Loss for Dense Object Detection</h1><p><a href="https://github.com/facebookresearch/Detectron" target="_blank" rel="noopener">代码链接</a>　<a href="https://arxiv.org/abs/1708.02002" target="_blank" rel="noopener">论文链接</a></p>
+<p>作者提出了focal loss，通过在交叉熵损失函数中加入一个衰减系数，达到可以降低那些”分类好“的样本的损失，从而更加关注那个误分类的样本。根据这个损失函数，作者训练了一个检测器RetinaNet，性能比当前最好的two-stage检测器性能还高，在COCO数据集可以达到40.8 AP。</p>
+<p>之前最好的目标检测器还是基于two-stage，基于候选框驱动机制。先生成候选框目标集，然后在分类回归定位。那么one-stage是否也可以达到同样的精度呢？one-stage通过密集采样，基于anchor机制采样不同目标位置，不同scale，不同ratios。比如YOLO，SSD等方法。</p>
+<p>作者提出的RetinaNet可以匹敌two-stage检测器，比如Feature Pyramid Network (FPN)、Mask R-CNN、Faster R-CNN。作者发现了类别不均衡是导致one-stage检测器精度上不去的原因。在two-stage检测器中一般有提取候选框的步骤，所以可以很快降低候选框数目，这其实以及有降低类别不均衡的意思在里面，因为图像大部分地方都是背景，在two-stage方法中解决样本不均衡一般采用启发式采样，比如前景和背景比例保持在1:3左右，或者使用难样本挖掘（online hard example mining (OHEM)）。然而在one-stage中一般要处理100k左右的候选框，虽然也使用启发式采样，但是效率很低，比如使用bootstrapping或者hard example mining等方法。</p>
+<p>样本不均衡所带来的问题：1训练效率不高，因为大部分的样本为easy-negatives，对学习没有帮助；2大量的easy-negatives会使训练overwhelm从而使模型退化。</p>
+<p>很多论文都在解决损失函数鲁棒性问题，比如Huber loss，但是大部分的损失函数都是致力于离群点，降低hard examples的损失权重，相反的focal loss主要设计为处理样本不均衡问题，致力于降低非离群点也就是easy example的损失权重。</p>
+<h2 id="Focal-Loss"><a href="#Focal-Loss" class="headerlink" title="Focal Loss"></a>Focal Loss</h2><p>标准交叉熵损失函数：<br>$$<br>CE(p,y)= \left{<br>\begin{aligned}<br>-log(p) &amp;&amp; if(y = 1) \<br>-log(1-p) &amp;&amp; otherwise<br>\end{aligned}<br>\right.<br>$$<br>设<br>$$<br>p_t = \left{<br>\begin{aligned}<br>p &amp;&amp; if(y = 1) \<br>1-p &amp;&amp; otherwise<br>\end{aligned}<br>\right.<br>$$<br>可以得到CE(p, y) = CE(pt ) = − log(pt )</p>
+<p>画出曲线可以分析看到即使是容易分类的样本，数量一多，也会造成很大的损失。实验表明样本不均衡使得易分类样本的损失占大部分，主导了梯度。作者提出的损失函数：<br>$$<br>FL(p_t ) = −(1 − p_t )^γ log(p_t )<br>$$</p>
+<p>当样本误分类的时候pt很小，系数接近于１，系数对loss没啥影响；当pt接近于１的时候，系数接近０，对于易分类的样本可以降低权重。通过降低易分类样本的损失权重反过来增加了分类错误的损失的重要性。</p>
+<p>作者还加了一个系数可以提高精度：<br>$$<br>FL(p_t ) = −α_t (1 − p_t )^γ log(p_t )<br>$$<br><img src="https://raw.githubusercontent.com/clancylian/blogpic/master/retinanet.png" alt="图片"></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+	<div> 
+    
+    
+    <ul class="post-copyright">
+     <li class="post-copyright-author">
+      <strong>本文作者：</strong>Clancy Lian
+     </li>
+     <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+	  <a href="https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/" title="PaperReading:RetinaNet">https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/</a>
+     </li>
+     <li class="post-copyright-license">
+      <strong>版权： </strong>
+      请勿用于商业，转载注明出处！
+     </li>
+    </ul>
+    
+    </div>
+	
+      
+        <div class="post-tags">
+          
+            <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/07/PaperReading-RetinaFace/" rel="next" title="PaperReading:RetinaFace">
+                <i class="fa fa-chevron-left"></i> PaperReading:RetinaFace
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/23/perf 安装及使用/" rel="prev" title="perf 安装及使用">
+                perf 安装及使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -450,6 +528,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -470,8 +562,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -560,6 +661,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Focal-Loss-for-Dense-Object-Detection"><span class="nav-text">Focal Loss for Dense Object Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Focal-Loss"><span class="nav-text">Focal Loss</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -717,6 +834,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -734,6 +855,18 @@
       <script id="dsq-count-scr" src="https://clancylian.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/';
+          this.page.identifier = '2019/05/10/PaperReading-RetinaNet/';
+          this.page.title = 'PaperReading:RetinaNet';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://clancylian.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="perf,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="晃晃的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="perf 安装及使用perf 安装123$ sudo apt install linux-tools-common## 注意版本号$ sudo apt-get install linux-tools-4.4.0-24-generic linux-cloud-tools-4.4.0-24-generic linux-tools-generic linux-cloud-tools-generic pe">
+<meta name="keywords" content="perf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="perf 安装及使用">
+<meta property="og:url" content="https://clancylian.github.io/2019/05/23/perf 安装及使用/index.html">
+<meta property="og:site_name" content="晃晃的博客">
+<meta property="og:description" content="perf 安装及使用perf 安装123$ sudo apt install linux-tools-common## 注意版本号$ sudo apt-get install linux-tools-4.4.0-24-generic linux-cloud-tools-4.4.0-24-generic linux-tools-generic linux-cloud-tools-generic pe">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-23T06:08:31.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="perf 安装及使用">
+<meta name="twitter:description" content="perf 安装及使用perf 安装123$ sudo apt install linux-tools-common## 注意版本号$ sudo apt-get install linux-tools-4.4.0-24-generic linux-cloud-tools-4.4.0-24-generic linux-tools-generic linux-cloud-tools-generic pe">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":2,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://clancylian.github.io/2019/05/23/perf 安装及使用/">
+
+
+
+
+
+  <title>perf 安装及使用 | 晃晃的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/clancylian" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">晃晃的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancylian.github.io/2019/05/23/perf 安装及使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Clancy Lian">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晃晃的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">perf 安装及使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T14:27:19+08:00">
+                2019-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/perf/" itemprop="url" rel="index">
+                    <span itemprop="name">perf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/23/perf 安装及使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/23/perf 安装及使用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+			
+		  
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="perf-安装及使用"><a href="#perf-安装及使用" class="headerlink" title="perf 安装及使用"></a>perf 安装及使用</h1><h2 id="perf-安装"><a href="#perf-安装" class="headerlink" title="perf 安装"></a>perf 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install linux-tools-common</span><br><span class="line"><span class="comment">## 注意版本号</span></span><br><span class="line">$ sudo apt-get install linux-tools-4.4.0-24-generic linux-cloud-tools-4.4.0-24-generic linux-tools-generic linux-cloud-tools-generic</span><br></pre></td></tr></table></figure>
+<h2 id="perf-命令"><a href="#perf-命令" class="headerlink" title="perf 命令"></a>perf 命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ubuntu-B250-HD3:~$ perf</span><br><span class="line"></span><br><span class="line"> usage: perf [--version] [--<span class="built_in">help</span>] [OPTIONS] COMMAND [ARGS]</span><br><span class="line"></span><br><span class="line"> The most commonly used perf commands are:</span><br><span class="line">   annotate        Read perf.data (created by perf record) and display annotated code</span><br><span class="line">   archive         Create archive with object files with build-ids found <span class="keyword">in</span> perf.data file</span><br><span class="line">   bench           General framework <span class="keyword">for</span> benchmark suites</span><br><span class="line">   buildid-cache   Manage build-id cache.</span><br><span class="line">   buildid-list    List the buildids <span class="keyword">in</span> a perf.data file</span><br><span class="line">   c2c             Shared Data C2C/HITM Analyzer.</span><br><span class="line">   config          Get and <span class="built_in">set</span> variables <span class="keyword">in</span> a configuration file.</span><br><span class="line">   data            Data file related processing</span><br><span class="line">   diff            Read perf.data files and display the differential profile</span><br><span class="line">   evlist          List the event names <span class="keyword">in</span> a perf.data file</span><br><span class="line">   ftrace          simple wrapper <span class="keyword">for</span> kernel<span class="string">'s ftrace functionality</span></span><br><span class="line"><span class="string">   inject          Filter to augment the events stream with additional information</span></span><br><span class="line"><span class="string">   kallsyms        Searches running kernel for symbols</span></span><br><span class="line"><span class="string">   kmem            Tool to trace/measure kernel memory properties</span></span><br><span class="line"><span class="string">   kvm             Tool to trace/measure kvm guest os</span></span><br><span class="line"><span class="string">   list            List all symbolic event types</span></span><br><span class="line"><span class="string">   lock            Analyze lock events</span></span><br><span class="line"><span class="string">   mem             Profile memory accesses</span></span><br><span class="line"><span class="string">   record          Run a command and record its profile into perf.data</span></span><br><span class="line"><span class="string">   report          Read perf.data (created by perf record) and display the profile</span></span><br><span class="line"><span class="string">   sched           Tool to trace/measure scheduler properties (latencies)</span></span><br><span class="line"><span class="string">   script          Read perf.data (created by perf record) and display trace output</span></span><br><span class="line"><span class="string">   stat            Run a command and gather performance counter statistics</span></span><br><span class="line"><span class="string">   test            Runs sanity tests.</span></span><br><span class="line"><span class="string">   timechart       Tool to visualize total system behavior during a workload</span></span><br><span class="line"><span class="string">   top             System profiling tool.</span></span><br><span class="line"><span class="string">   probe           Define new dynamic tracepoints</span></span><br><span class="line"><span class="string">   trace           strace inspired tool</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> See '</span>perf <span class="built_in">help</span> COMMAND<span class="string">' for more information on a specific command.</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>annotate</td>
+<td>解析perf record生成的perf.data文件，显示被注释的代码。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>archive</td>
+<td>根据数据文件记录的build-id，将所有被采样到的elf文件打包。利用此压缩包，可以再任何机器上分析数据文件中记录的采样数据。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>bench</td>
+<td>perf中内置的benchmark，目前包括两套针对调度器和内存管理子系统的benchmark。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>buildid-cache</td>
+<td>管理perf的buildid缓存，每个elf文件都有一个独一无二的buildid。buildid被perf用来关联性能数据与elf文件。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>buildid-list</td>
+<td>列出数据文件中记录的所有buildid。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>diff</td>
+<td>对比两个数据文件的差异。能够给出每个符号（函数）在热点分析上的具体差异。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>evlist</td>
+<td>列出数据文件perf.data中所有性能事件。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>inject</td>
+<td>该工具读取perf record工具记录的事件流，并将其定向到标准输出。在被分析代码中的任何一点，都可以向事件流中注入其它事件。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>kmem</td>
+<td>针对内核内存（slab）子系统进行追踪测量的工具</td>
+</tr>
+<tr>
+<td>10</td>
+<td>kvm</td>
+<td>用来追踪测试运行在KVM虚拟机上的Guest OS。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>list</td>
+<td>列出当前系统支持的所有性能事件。包括硬件性能事件、软件性能事件以及检查点。</td>
+</tr>
+<tr>
+<td>12</td>
+<td>lock</td>
+<td>分析内核中的锁信息，包括锁的争用情况，等待延迟等。</td>
+</tr>
+<tr>
+<td>13</td>
+<td>mem</td>
+<td>内存存取情况</td>
+</tr>
+<tr>
+<td>14</td>
+<td>record</td>
+<td>收集采样信息，并将其记录在数据文件中。随后可通过其它工具对数据文件进行分析。</td>
+</tr>
+<tr>
+<td>15</td>
+<td>report</td>
+<td>读取perf record创建的数据文件，并给出热点分析结果。</td>
+</tr>
+<tr>
+<td>16</td>
+<td>sched</td>
+<td>针对调度器子系统的分析工具。</td>
+</tr>
+<tr>
+<td>17</td>
+<td>script</td>
+<td>执行perl或python写的功能扩展脚本、生成脚本框架、读取数据文件中的数据信息等。</td>
+</tr>
+<tr>
+<td>18</td>
+<td>stat</td>
+<td>执行某个命令，收集特定进程的性能概况，包括CPI、Cache丢失率等。</td>
+</tr>
+<tr>
+<td>19</td>
+<td>test</td>
+<td>perf对当前软硬件平台进行健全性测试，可用此工具测试当前的软硬件平台是否能支持perf的所有功能。</td>
+</tr>
+<tr>
+<td>20</td>
+<td>timechart</td>
+<td>针对测试期间系统行为进行可视化的工具</td>
+</tr>
+<tr>
+<td>21</td>
+<td>top</td>
+<td>类似于linux的top命令，对系统性能进行实时分析。</td>
+</tr>
+<tr>
+<td>22</td>
+<td>trace</td>
+<td>关于syscall的工具。</td>
+</tr>
+<tr>
+<td>23</td>
+<td>probe</td>
+<td>用于定义动态检查点。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="perf-使用"><a href="#perf-使用" class="headerlink" title="perf 使用"></a>perf 使用</h2><p>系统级性能优化通常包括两个阶段：性能剖析（performance profiling）和代码优化。</p>
+<p>性能剖析的目标是寻找性能瓶颈，查找引发性能问题的原因及热点代码。</p>
+<p>代码优化的目标是针对具体性能问题而优化代码或编译选项，以改善软件性能。</p>
+<h3 id="perf-list"><a href="#perf-list" class="headerlink" title="perf list"></a>perf list</h3><p>perf list 可以显示所有支持的事件类型，可以显示特定模块支持的perf事件：hw/cache/pmu都是硬件相关的；tracepoint基于内核的ftrace；sw实际上是内核计数器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ubuntu-B250-HD3:~$ sudo perf list</span><br><span class="line"></span><br><span class="line">List of pre-defined events (to be used <span class="keyword">in</span> -e):</span><br><span class="line"></span><br><span class="line">  branch-instructions OR branches                    [Hardware event]</span><br><span class="line">  branch-misses                                      [Hardware event]</span><br><span class="line">  bus-cycles                                         [Hardware event]</span><br><span class="line">  cache-misses                                       [Hardware event]</span><br><span class="line">  cache-references                                   [Hardware event]</span><br><span class="line">  cpu-cycles OR cycles                               [Hardware event]</span><br><span class="line">  instructions                                       [Hardware event]</span><br><span class="line">  ref-cycles                                         [Hardware event]</span><br><span class="line"></span><br><span class="line">  alignment-faults                                   [Software event]</span><br><span class="line">  bpf-output                                         [Software event]</span><br><span class="line">  context-switches OR cs                             [Software event]</span><br><span class="line">  ...</span><br><span class="line">  minor-faults                                       [Software event]</span><br><span class="line">  page-faults OR faults                              [Software event]</span><br><span class="line">  task-clock                                         [Software event]</span><br><span class="line"></span><br><span class="line">  L1-dcache-load-misses                              [Hardware cache event]</span><br><span class="line">  L1-dcache-loads                                    [Hardware cache event]</span><br><span class="line">  L1-dcache-stores                                   [Hardware cache event]</span><br><span class="line">　...</span><br><span class="line">  iTLB-loads                                         [Hardware cache event]</span><br><span class="line">  node-load-misses                                   [Hardware cache event]</span><br><span class="line">  node-loads                                         [Hardware cache event]</span><br><span class="line">  node-store-misses                                  [Hardware cache event]</span><br><span class="line">  node-stores                                        [Hardware cache event]</span><br><span class="line"></span><br><span class="line">  branch-instructions OR cpu/branch-instructions/    [Kernel PMU event]</span><br><span class="line">  branch-misses OR cpu/branch-misses/                [Kernel PMU event]</span><br><span class="line">  bus-cycles OR cpu/bus-cycles/                      [Kernel PMU event]</span><br><span class="line">  ...</span><br><span class="line">  cycles-ct OR cpu/cycles-ct/                        [Kernel PMU event]</span><br><span class="line">  cycles-t OR cpu/cycles-t/                          [Kernel PMU event]</span><br><span class="line">  el-abort OR cpu/el-abort/                          [Kernel PMU event]</span><br></pre></td></tr></table></figure>
+<h3 id="perf-stat"><a href="#perf-stat" class="headerlink" title="perf stat"></a>perf stat</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ubuntu-<span class="keyword">B250-HD3:~$ </span>sudo perf stat</span><br><span class="line"></span><br><span class="line"> Performance counter stats for <span class="string">'system wide'</span>:</span><br><span class="line"></span><br><span class="line">      <span class="number">78762</span>.<span class="number">210390</span>      cpu-<span class="keyword">clock </span>(msec)          <span class="comment">#    8.000 CPUs utilized          </span></span><br><span class="line">           <span class="number">102</span>,<span class="number">321</span>      <span class="built_in">context</span>-<span class="keyword">switches </span>         <span class="comment">#    0.001 M/sec                  </span></span><br><span class="line">               <span class="number">888</span>      cpu-migrations            <span class="comment">#    0.011 K/sec                  </span></span><br><span class="line">           <span class="number">102</span>,<span class="number">842</span>      page-faults               <span class="comment">#    0.001 M/sec                  </span></span><br><span class="line">    <span class="number">34</span>,<span class="number">026</span>,<span class="number">798</span>,<span class="number">403</span>      cycles                    <span class="comment">#    0.432 GHz                    </span></span><br><span class="line">    <span class="number">34</span>,<span class="number">823</span>,<span class="number">881</span>,<span class="number">180</span>      <span class="keyword">instructions </span>             <span class="comment">#    1.02  insn per cycle         </span></span><br><span class="line">     <span class="number">7</span>,<span class="number">258</span>,<span class="number">813</span>,<span class="number">402</span>      <span class="keyword">branches </span>                 <span class="comment">#   92.161 M/sec                  </span></span><br><span class="line">        <span class="number">59</span>,<span class="number">271</span>,<span class="number">180</span>      <span class="keyword">branch-misses </span>            <span class="comment">#    0.82% of all branches        </span></span><br><span class="line"></span><br><span class="line">       <span class="number">9</span>.<span class="number">845475012</span> seconds time elapsed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>cpu-clock：任务真正占用的处理器时间，单位为ms。CPUs utilized = task-clock / time elapsed，CPU的占用率。</li>
+<li>context-switches：程序在运行过程中上下文的切换次数。</li>
+<li>CPU-migrations：程序在运行过程中发生的处理器迁移次数。Linux为了维持多个处理器的负载均衡，在特定条件下会将某个任务从一个CPU迁移到另一个CPU。</li>
+<li>CPU迁移和上下文切换：发生上下文切换不一定会发生CPU迁移，而发生CPU迁移时肯定会发生上下文切换。发生上下文切换有可能只是把上下文从当前CPU中换出，下一次调度器还是将进程安排在这个CPU上执行。</li>
+<li>page-faults：缺页异常的次数。当应用程序请求的页面尚未建立、请求的页面不在内存中，或者请求的页面虽然在内存中，但物理地址和虚拟地址的映射关系尚未建立时，都会触发一次缺页异常。另外TLB不命中，页面访问权限不匹配等情况也会触发缺页异常。</li>
+<li>cycles：消耗的处理器周期数。如果把被ls使用的cpu cycles看成是一个处理器的，那么它的主频为2.486GHz。可以用cycles / task-clock算出。</li>
+<li>stalled-cycles-frontend：指令读取或解码的质量步骤，未能按理想状态发挥并行左右，发生停滞的时钟周期。</li>
+<li>stalled-cycles-backend：指令执行步骤，发生停滞的时钟周期。</li>
+<li>instructions：执行了多少条指令。IPC为平均每个cpu cycle执行了多少条指令。</li>
+<li>branches：遇到的分支指令数。</li>
+<li>branch-misses：是预测错误的分支指令数。</li>
+</ul>
+<p>perf stat 常用参数：</p>
+<pre><code>-a, --all-cpus        显示所有CPU上的统计信息
+-C, --cpu &lt;cpu&gt;       显示指定CPU的统计信息
+-c, --scale           scale/normalize counters
+-D, --delay &lt;n&gt;       ms to wait before starting measurement after program start
+-d, --detailed        detailed run - start a lot of events
+-e, --event &lt;event&gt;   event selector. use &apos;perf list&apos; to list available events
+-G, --cgroup &lt;name&gt;   monitor event in cgroup name only
+-g, --group           put the counters into a counter group
+-I, --interval-print &lt;n&gt;
+                      print counts at regular interval in ms (&gt;= 10)
+-i, --no-inherit      child tasks do not inherit counters
+-n, --null            null run - dont start any counters
+-o, --output &lt;file&gt;   输出统计信息到文件
+-p, --pid &lt;pid&gt;       stat events on existing process id
+-r, --repeat &lt;n&gt;      repeat command and print average + stddev (max: 100, forever: 0)
+-S, --sync            call sync() before starting a run
+-t, --tid &lt;tid&gt;       stat events on existing thread id
+</code></pre><h3 id="perf-top"><a href="#perf-top" class="headerlink" title="perf top"></a>perf top</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ sudo perf top</span><br><span class="line"></span><br><span class="line">Samples: 147K of event <span class="string">'cycles:ppp'</span>, Event count (approx.): 59239863864</span><br><span class="line">Overhead  Shared Object                                 Symbol</span><br><span class="line">   9.86%  [kernel]                                      [k] do_syscall_64</span><br><span class="line">   5.12%  [kernel]                                      [k] syscall_return_via_sysret</span><br><span class="line">   3.12%  libcuda.so.418.56                             [.] 0x00000000002fb584</span><br><span class="line">   2.99%  libgomp.so.1.0.0                              [.] 0x0000000000011b27</span><br><span class="line">   1.82%  [kernel]                                      [k] __schedule</span><br><span class="line">   1.21%  [kernel]                                      [k] pick_next_task_fair</span><br><span class="line">   1.07%  [kernel]                                      [k] _raw_spin_lock</span><br><span class="line">   1.00%  [unknown]                                     [k] 0xfffffe000013a01b</span><br><span class="line">   0.98%  libpthread-2.23.so                            [.] pthread_mutex_lock</span><br><span class="line">   0.81%  [kernel]                                      [k] prepare_exit_to_usermode</span><br><span class="line">   0.81%  libc-2.23.so                                  [.] __sched_yield</span><br><span class="line">   0.80%  [kernel]                                      [k] cpuacct_charge</span><br><span class="line">   0.79%  libpthread-2.23.so                            [.] pthread_mutex_unlock</span><br><span class="line">   0.76%  [kernel]                                      [k] clear_page_erms</span><br><span class="line">   0.69%  [kernel]                                      [k] native_sched_clock</span><br><span class="line">   0.69%  [kernel]                                      [k] update_curr</span><br><span class="line">   0.63%  [kernel]                                      [k] yield_task_fair</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一列：符号引发的性能事件的比例，指占用的cpu周期比例。</li>
+<li>第二列：符号所在的DSO(Dynamic Shared Object)，可以是应用程序、内核、动态链接库、模块。</li>
+<li>第三列：DSO的类型。[.]表示此符号属于用户态的ELF文件，包括可执行文件与动态链接库；[k]表述此符号属于内核或模块。</li>
+<li>第四列：符号名。有些符号不能解析为函数名，只能用地址表示。</li>
+</ul>
+<p>perf top 常用的选项：</p>
+<ul>
+<li>-e <event>：指明要分析的性能事件。</event></li>
+<li>-p <pid>：Profile events on existing Process ID (comma sperated list). 仅分析目标进程及其创建的线程。</pid></li>
+<li>-k <path>：Path to vmlinux. Required for annotation functionality. 带符号表的内核映像所在的路径。</path></li>
+<li>-K：不显示属于内核或模块的符号。</li>
+<li>-U：不显示属于用户态程序的符号。</li>
+<li>-d <n>：界面的刷新周期，默认为2s，因为perf top默认每2s从mmap的内存区域读取一次性能数据。</n></li>
+<li>-g：得到函数的调用关系图。</li>
+</ul>
+<h3 id="perf-reocrd"><a href="#perf-reocrd" class="headerlink" title="perf reocrd"></a>perf reocrd</h3><p>使用 top 和 stat之后，已经大致有数了。要进一步分析，便需要一些粒度更细的信息。比如说已经断定目标程序计算量较大，也许是因为有些代码写的不够精简。那么面对长长的代码文件，究竟哪几行代码需要进一步修改呢？这便需要使用perf record 记录单个函数级别的统计信息，并使用 perf report 来显示统计结果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo perf record -g -e cpu-clock ./<span class="built_in">test</span></span><br><span class="line">$ sudo perf report</span><br><span class="line"><span class="comment">## 查看百分比比较高的为耗时比较严重的函数</span></span><br></pre></td></tr></table></figure>
+<p>perf record 常用参数：</p>
+<ul>
+<li>-e record指定PMU事件</li>
+<li>–filter  event事件过滤器</li>
+<li>-a  录取所有CPU的事件</li>
+<li>-p  录取指定pid进程的事件</li>
+<li>-o  指定录取保存数据的文件名</li>
+<li>-g  使能函数调用图功能</li>
+<li>-C 录取指定CPU的事件</li>
+</ul>
+<p>perf report 常用参数：</p>
+<ul>
+<li>-i  导入的数据文件名称，如果没有则默认为perf.data</li>
+<li>-g  生成函数调用关系图，<strong>此时内核要打开CONFIG_KALLSYMS；用户空间库或者执行文件需要带符号信息(not stripped)，编译选项需要加上-g。</strong></li>
+<li>–sort  从更高层面显示分类统计信息，比如： pid, comm, dso, symbol, parent, cpu,socket, srcline, weight, local_weight.</li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>还有很多功能，带后续慢慢挖掘。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/arnoldlu/p/6241297.html" target="_blank" rel="noopener">https://www.cnblogs.com/arnoldlu/p/6241297.html</a></p>
+<p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-perf1/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/linux/l-cn-perf1/index.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+	<div> 
+    
+    
+    <ul class="post-copyright">
+     <li class="post-copyright-author">
+      <strong>本文作者：</strong>Clancy Lian
+     </li>
+     <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+	  <a href="https://clancylian.github.io/2019/05/23/perf 安装及使用/" title="perf 安装及使用">https://clancylian.github.io/2019/05/23/perf 安装及使用/</a>
+     </li>
+     <li class="post-copyright-license">
+      <strong>版权： </strong>
+      请勿用于商业，转载注明出处！
+     </li>
+    </ul>
+    
+    </div>
+	
+      
+        <div class="post-tags">
+          
+            <a href="/tags/perf/" rel="tag"><i class="fa fa-tag"></i> perf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/PaperReading-RetinaNet/" rel="next" title="PaperReading:RetinaNet">
+                <i class="fa fa-chevron-left"></i> PaperReading:RetinaNet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Clancy Lian">
+            
+              <p class="site-author-name" itemprop="name">Clancy Lian</p>
+              <p class="site-description motion-element" itemprop="description">我自风情万种，与世无争。</p>
+          </div>
+		  
+		  <div id="music163player">
+		    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=440759879&auto=1&height=66"></iframe>
+		  </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/clancylian" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="clancy.lian@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#perf-安装及使用"><span class="nav-text">perf 安装及使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#perf-安装"><span class="nav-text">perf 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#perf-命令"><span class="nav-text">perf 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#perf-使用"><span class="nav-text">perf 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#perf-list"><span class="nav-text">perf list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perf-stat"><span class="nav-text">perf stat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perf-top"><span class="nav-text">perf top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perf-reocrd"><span class="nav-text">perf reocrd</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-text">TODO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Clancy Lian</span>
+
+  
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共18k字</span>
+</div>
+
+<div>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style="display:none">
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style="display:none">
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://clancylian.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://clancylian.github.io/2019/05/23/perf 安装及使用/';
+          this.page.identifier = '2019/05/23/perf 安装及使用/';
+          this.page.title = 'perf 安装及使用';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://clancylian.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

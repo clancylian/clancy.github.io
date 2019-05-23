@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="人脸检测,">
 
 
 
@@ -107,16 +107,18 @@
 
 
 
-<meta name="description" content="我自风情万种，与世无争。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晃晃的博客">
-<meta property="og:url" content="https://clancylian.github.io/archives/2019/03/index.html">
+<meta name="description" content="摘要虽然对于无约束人脸检测取得了巨大进步，但是精度和速度依然是一个挑战。作者提出一种鲁棒的single-stage人脸检测器，加入extra-supervised和self-supervised模块，提高人脸检测性能的多任务学习方法。论文主要贡献有５点：  手动标注WIDER FACE数据集人脸关键点，并且在难人脸检测上由于额外监督信号的帮助取得了巨大的提高。 在现有的模块上并行加入self-su">
+<meta name="keywords" content="人脸检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaperReading:RetinaFace">
+<meta property="og:url" content="https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/index.html">
 <meta property="og:site_name" content="晃晃的博客">
-<meta property="og:description" content="我自风情万种，与世无争。">
+<meta property="og:description" content="摘要虽然对于无约束人脸检测取得了巨大进步，但是精度和速度依然是一个挑战。作者提出一种鲁棒的single-stage人脸检测器，加入extra-supervised和self-supervised模块，提高人脸检测性能的多任务学习方法。论文主要贡献有５点：  手动标注WIDER FACE数据集人脸关键点，并且在难人脸检测上由于额外监督信号的帮助取得了巨大的提高。 在现有的模块上并行加入self-su">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-13T00:37:16.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="晃晃的博客">
-<meta name="twitter:description" content="我自风情万种，与世无争。">
+<meta name="twitter:title" content="PaperReading:RetinaFace">
+<meta name="twitter:description" content="摘要虽然对于无约束人脸检测取得了巨大进步，但是精度和速度依然是一个挑战。作者提出一种鲁棒的single-stage人脸检测器，加入extra-supervised和self-supervised模块，提高人脸检测性能的多任务学习方法。论文主要贡献有５点：  手动标注WIDER FACE数据集人脸关键点，并且在难人脸检测上由于额外监督信号的帮助取得了巨大的提高。 在现有的模块上并行加入self-su">
 
 
 
@@ -146,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="https://clancylian.github.io/archives/2019/03/">
+  <link rel="canonical" href="https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/">
 
 
 
 
 
-  <title>归档 | 晃晃的博客</title>
+  <title>PaperReading:RetinaFace | 晃晃的博客</title>
   
 
 
@@ -171,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/clancylian" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,142 +309,232 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Clancy Lian">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晃晃的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">PaperReading:RetinaFace</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T14:17:11+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/论文/" itemprop="url" rel="index">
+                    <span itemprop="name">论文</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/07/PaperReading-RetinaFace/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/07/PaperReading-RetinaFace/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/31/2019学习计划/" itemprop="url">
-              
-                <span itemprop="name">2019学习计划</span>
-              
-            </a>
-        
-      </h2>
+          
+			
+		  
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-31T22:04:58+08:00" content="2019-03-31">
-          03-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/29/GStreamer插件编写学习/" itemprop="url">
-              
-                <span itemprop="name">GStreamer插件编写学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T12:31:35+08:00" content="2019-03-29">
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/29/GStreamer插件之Transform-elements/" itemprop="url">
-              
-                <span itemprop="name">GStreamer插件之Transform elements</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T11:41:44+08:00" content="2019-03-29">
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>虽然对于无约束人脸检测取得了巨大进步，但是精度和速度依然是一个挑战。作者提出一种鲁棒的single-stage人脸检测器，加入extra-supervised和self-supervised模块，提高人脸检测性能的多任务学习方法。论文主要贡献有５点：</p>
+<ul>
+<li>手动标注WIDER FACE数据集人脸关键点，并且在难人脸检测上由于额外监督信号的帮助取得了巨大的提高。</li>
+<li>在现有的模块上并行加入self-supervised解码分支预测3D人脸信息分支。</li>
+<li>在WIDER FACE hard test数据集上提高1.1%（达到91.4%）。</li>
+<li>在IJB-C test set上测试结果表明可以提高ArcFace在人脸验证精度(TAR=89.59% for FAR=1e-6)。</li>
+<li>使用轻量级骨干网络，RetinaFace在CPU上测试VGA图片可以达到实时。</li>
+</ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>此片论文包含face detection、face alignment、pixel-wise face parsing、3D dense correspondence regres-sion等任务。</p>
+<p>首先论文灵感来源于一般目标检测rcnn系列、SSD、YOLO系列、FPN、Focal loss。和一般的目标检测不同，人脸检测的宽高比一般是1:1到1:1.5之间，但是大小可以从几个像素到几千个像素。目前比较流行的方法是one-stage方法，速度比较快，所以作者基于one-stage采用多任务方法得到state-of-the-art结果。</p>
+<p>《Joint cascade face detection and alignment》论文提出的联合人脸检测和人脸对齐可以提取到更好的人脸特征。所以基于MTCNN和STN方法灵感，作者加入５个人脸关键点，由于训练数据的限制JDA 、MTCNN、和STN没有验证过小人脸检测是否可以从额外的５个关键点中获益。通过加入５个关键点，作者想看看能否在WIDER FACE hard test取得更好的性能。</p>
+<p>Mask R-CNN通过加入了Mask并行预测分支之后性能得到了很大的提升。证实了密集pixel-wise标签可以提高检测。然而WIDER FACE对密集标注很难实施，能够使用非监督方法来进一步提高人脸检测呢？</p>
+<p>在FAN论文中，提出了一种anchor-level attention map来提高遮挡的人脸检测，但是这个方法太粗糙，并且不包含语义信息。目前，self-supervised 3D morphable models在3D人脸建模取得良好成绩，尤其是Mesh Decoder达到了实时。但是应用Mesh Decoder方法有两个难点：１相机参数难以估计精确；２特征漂移。本篇论文作者使用自监督学习方法加入额外分支来预测3D人脸形状。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p><strong>Image pyramid v.s. feature pyramid</strong></p>
+<p><strong>Two-stage v.s. single-stage</strong></p>
+<p><strong>Context Modelling</strong></p>
+<p><strong>Multi-task Learning</strong></p>
+<h2 id="RetinaFace"><a href="#RetinaFace" class="headerlink" title="RetinaFace"></a>RetinaFace</h2><h3 id="多任务损失函数"><a href="#多任务损失函数" class="headerlink" title="多任务损失函数"></a>多任务损失函数</h3><p>$$<br>L = L_{cls}(p_i ,p^∗_i) + λ_1p^∗_iL_{box}(t_i,t^∗_i)</p>
+<ul>
+<li>λ_2p^∗_iL_{pts}(l_i,l_i^∗) + λ_3p^∗_iL_{pixel}<br>$$</li>
+</ul>
+<p>其中Lcls代表分类损失，softmax，pi表示anchor i预测为人脸的概率，p*为１表示为正样本，为０表示负样本。</p>
+<p>其中Lbox为边框回归损失，smooth-L1，t i = {t x , t y , t w , t h }，对中心点和宽高进行归一化操作，对于正样本anchor的损失。</p>
+<p>其中L pts为５个关键点回归，类似边框回归中的中心点回归。</p>
+<p>其中L pixel为密集回归损失函数，具体函数见后面。</p>
+<p>λ 1 -λ 3为权重分别设置为0.25 0.1 0.01</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+	<div> 
+    
+    
+    <ul class="post-copyright">
+     <li class="post-copyright-author">
+      <strong>本文作者：</strong>Clancy Lian
+     </li>
+     <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+	  <a href="https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/" title="PaperReading:RetinaFace">https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/</a>
+     </li>
+     <li class="post-copyright-license">
+      <strong>版权： </strong>
+      请勿用于商业，转载注明出处！
+     </li>
+    </ul>
+    
+    </div>
+	
+      
+        <div class="post-tags">
+          
+            <a href="/tags/人脸检测/" rel="tag"><i class="fa fa-tag"></i> 人脸检测</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/PaperReading:FaceBoxes/" rel="next" title="PaperReading: FaceBoxes">
+                <i class="fa fa-chevron-left"></i> PaperReading: FaceBoxes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/10/PaperReading-RetinaNet/" rel="prev" title="PaperReading:RetinaNet">
+                PaperReading:RetinaNet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -450,6 +542,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -470,8 +576,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -560,6 +675,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RetinaFace"><span class="nav-text">RetinaFace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多任务损失函数"><span class="nav-text">多任务损失函数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -717,6 +848,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -734,6 +869,18 @@
       <script id="dsq-count-scr" src="https://clancylian.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/';
+          this.page.identifier = '2019/05/07/PaperReading-RetinaFace/';
+          this.page.title = 'PaperReading:RetinaFace';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://clancylian.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
