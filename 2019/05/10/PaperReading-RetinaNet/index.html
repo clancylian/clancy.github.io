@@ -116,7 +116,7 @@
 <meta property="og:description" content="Focal Loss for Dense Object Detection代码链接　论文链接 作者提出了focal loss，通过在交叉熵损失函数中加入一个衰减系数，达到可以降低那些”分类好“的样本的损失，从而更加关注那个误分类的样本。根据这个损失函数，作者训练了一个检测器RetinaNet，性能比当前最好的two-stage检测器性能还高，在COCO数据集可以达到40.8 AP。 之前最好的目标">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/clancylian/blogpic/master/retinanet.png">
-<meta property="og:updated_time" content="2019-05-10T09:56:53.536Z">
+<meta property="og:updated_time" content="2019-05-29T03:06:03.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PaperReading:RetinaNet">
 <meta name="twitter:description" content="Focal Loss for Dense Object Detection代码链接　论文链接 作者提出了focal loss，通过在交叉熵损失函数中加入一个衰减系数，达到可以降低那些”分类好“的样本的损失，从而更加关注那个误分类的样本。根据这个损失函数，作者训练了一个检测器RetinaNet，性能比当前最好的two-stage检测器性能还高，在COCO数据集可以达到40.8 AP。 之前最好的目标">
@@ -1228,6 +1228,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
