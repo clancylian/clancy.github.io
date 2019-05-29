@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-05-23T06:08:31.311Z</updated>
+  <updated>2019-05-29T02:36:19.790Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CUDA Grid Block Thread</title>
+    <link href="https://clancylian.github.io/2019/05/28/CUDA-Grid-Block-Thread/"/>
+    <id>https://clancylian.github.io/2019/05/28/CUDA-Grid-Block-Thread/</id>
+    <published>2019-05-28T08:37:33.000Z</published>
+    <updated>2019-05-29T02:36:19.790Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;GPU性能&quot;&gt;&lt;a href=&quot;#GPU性能&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/categories/CUDA/"/>
+    
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/tags/CUDA/"/>
+    
+      <category term="GPU" scheme="https://clancylian.github.io/tags/GPU/"/>
+    
+  </entry>
   
   <entry>
     <title>perf 安装及使用</title>
@@ -196,9 +224,9 @@
       <category term="NVIDIA" scheme="https://clancylian.github.io/categories/NVIDIA/"/>
     
     
-      <category term="NPP" scheme="https://clancylian.github.io/tags/NPP/"/>
-    
       <category term="CUDA" scheme="https://clancylian.github.io/tags/CUDA/"/>
+    
+      <category term="NPP" scheme="https://clancylian.github.io/tags/NPP/"/>
     
   </entry>
   
