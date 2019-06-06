@@ -88,9 +88,9 @@ CUDA 的 device 实际在执行的时候，会以 Block 为单位，把一个个
 
 基本上 warp 分组的动作是由 SM 自动进行的，会以连续的方式来做分组。比如说如果有一个 block 里有 128 个 thread 的话，就会被分成四组 warp，第 0-31 个 thread 会是 warp 1、32-63 是 warp 2、64-95 是 warp 3、96-127 是 warp 4。而如果 block 里面的 thread 数量不是 32 的倍数，那他会把剩下的 thread 独立成一个 warp;比如说 thread 数目是 66 的话，就会有三个 warp：0-31、32-63、64-65。由于最后一个 warp 里只剩下两个 thread，所以其实在计算时，就相当于浪费了 30 个 thread 的计算能力。这点是在设定 block 中 thread 数量一定要注意的事!
 
-一个 SM 一次只会执行一个 block 里的一个 warp，但是 SM 不见得会一次就把这个 warp 的所有指令都执行完；当遇到正在执行的 warp 需要等待的时候(例如存取 global memory 就会要等好一段时间)，就切换到别的 warp 来继续做运算，藉此避免为了等待而浪费时间。所以理论上效率最好的状况，就是在 SM 中有够多的 warp 可以切换，让在执行的时候，不会有「所有 warp 都要等待」的情形发生;因为当所有的 warp 都要等待时，就会变成 SM 无事可做的状况了。
+~~一个 SM 一次只会执行一个 block 里的一个 warp，但是 SM 不见得会一次就把这个 warp 的所有指令都执行完；当遇到正在执行的 warp 需要等待的时候(例如存取 global memory 就会要等好一段时间)，就切换到别的 warp 来继续做运算，藉此避免为了等待而浪费时间。所以理论上效率最好的状况，就是在 SM 中有够多的 warp 可以切换，让在执行的时候，不会有「所有 warp 都要等待」的情形发生;因为当所有的 warp 都要等待时，就会变成 SM 无事可做的状况了。~~
 
-实际上，warp 也是 CUDA 中，每一个 SM 执行的最小单位；如果 GPU 有 16 个 SM 的话，也就代表他真正在执行的thread数目会是 32*16 个(resident thread)。不过由于 CUDA 是要透过 warp 的切换来隐藏 thread 的延迟、等待，来达到大量平行化的目的，所以会用所谓的 active thread 这个名词来代表一个 SM 里同时可以处理的 thread 数目。 active warp是指已经分配给SM的warp，并且该warp需要的资源（寄存器）也已经分配。
+~~实际上，warp 也是 CUDA 中，每一个 SM 执行的最小单位；如果 GPU 有 16 个 SM 的话，也就代表他真正在执行的thread数目会是 32*16 个(resident thread)。~~不过由于 CUDA 是要透过 warp 的切换来隐藏 thread 的延迟、等待，来达到大量平行化的目的，所以会用所谓的 active thread 这个名词来代表一个 SM 里同时可以处理的 thread 数目。 active warp是指已经分配给SM的warp，并且该warp需要的资源（寄存器）也已经分配。
 
 而在 block 的方面，一个 SM 可以同时处理多个 thread block，当其中有 block 的所有 thread 都处理完后，他就会再去找其他还没处理的 block 来处理。假设有 16 个 SM、64 个 block、每个 SM 可以同时处理三个 block 的话，那一开始执时，device 就会同时处理 48 个 block，而剩下的 16 个 block 则会等 SM 有处理完 block 后，再进到 SM 中处理，直到所有 block 都处理结束。
 

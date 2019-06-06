@@ -5,6 +5,7 @@ tags:
 - 人脸检测
 categories: 论文
 top: 30
+mathjax: true
 ---
 
 ## 摘要

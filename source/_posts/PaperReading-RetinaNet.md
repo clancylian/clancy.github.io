@@ -5,6 +5,7 @@ tags:
 - 目标检测
 categories: 论文
 top: 30
+mathjax: true
 ---
 
 # Focal Loss for Dense Object Detection
@@ -34,11 +35,14 @@ CE(p,y)= \left\{
 $$
 设
 $$
-p_t = \left\{
-\begin{aligned}
+p_t =
+\left\{
+\begin
+{aligned}
 p && if(y = 1) \\
-1-p && otherwise 
-\end{aligned}
+1-p && otherwise
+\end
+{aligned}
 \right.
 $$
 可以得到CE(p, y) = CE(pt ) = − log(pt )
