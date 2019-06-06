@@ -429,6 +429,7 @@
       
         <h1 id="perf-安装及使用"><a href="#perf-安装及使用" class="headerlink" title="perf 安装及使用"></a>perf 安装及使用</h1><h2 id="perf-安装"><a href="#perf-安装" class="headerlink" title="perf 安装"></a>perf 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install linux-tools-common</span><br><span class="line"><span class="comment">## 注意版本号</span></span><br><span class="line">$ sudo apt-get install linux-tools-4.4.0-24-generic linux-cloud-tools-4.4.0-24-generic linux-tools-generic linux-cloud-tools-generic</span><br></pre></td></tr></table></figure>
 <h2 id="perf-命令"><a href="#perf-命令" class="headerlink" title="perf 命令"></a>perf 命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ubuntu-B250-HD3:~$ perf</span><br><span class="line"></span><br><span class="line"> usage: perf [--version] [--<span class="built_in">help</span>] [OPTIONS] COMMAND [ARGS]</span><br><span class="line"></span><br><span class="line"> The most commonly used perf commands are:</span><br><span class="line">   annotate        Read perf.data (created by perf record) and display annotated code</span><br><span class="line">   archive         Create archive with object files with build-ids found <span class="keyword">in</span> perf.data file</span><br><span class="line">   bench           General framework <span class="keyword">for</span> benchmark suites</span><br><span class="line">   buildid-cache   Manage build-id cache.</span><br><span class="line">   buildid-list    List the buildids <span class="keyword">in</span> a perf.data file</span><br><span class="line">   c2c             Shared Data C2C/HITM Analyzer.</span><br><span class="line">   config          Get and <span class="built_in">set</span> variables <span class="keyword">in</span> a configuration file.</span><br><span class="line">   data            Data file related processing</span><br><span class="line">   diff            Read perf.data files and display the differential profile</span><br><span class="line">   evlist          List the event names <span class="keyword">in</span> a perf.data file</span><br><span class="line">   ftrace          simple wrapper <span class="keyword">for</span> kernel<span class="string">'s ftrace functionality</span></span><br><span class="line"><span class="string">   inject          Filter to augment the events stream with additional information</span></span><br><span class="line"><span class="string">   kallsyms        Searches running kernel for symbols</span></span><br><span class="line"><span class="string">   kmem            Tool to trace/measure kernel memory properties</span></span><br><span class="line"><span class="string">   kvm             Tool to trace/measure kvm guest os</span></span><br><span class="line"><span class="string">   list            List all symbolic event types</span></span><br><span class="line"><span class="string">   lock            Analyze lock events</span></span><br><span class="line"><span class="string">   mem             Profile memory accesses</span></span><br><span class="line"><span class="string">   record          Run a command and record its profile into perf.data</span></span><br><span class="line"><span class="string">   report          Read perf.data (created by perf record) and display the profile</span></span><br><span class="line"><span class="string">   sched           Tool to trace/measure scheduler properties (latencies)</span></span><br><span class="line"><span class="string">   script          Read perf.data (created by perf record) and display trace output</span></span><br><span class="line"><span class="string">   stat            Run a command and gather performance counter statistics</span></span><br><span class="line"><span class="string">   test            Runs sanity tests.</span></span><br><span class="line"><span class="string">   timechart       Tool to visualize total system behavior during a workload</span></span><br><span class="line"><span class="string">   top             System profiling tool.</span></span><br><span class="line"><span class="string">   probe           Define new dynamic tracepoints</span></span><br><span class="line"><span class="string">   trace           strace inspired tool</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> See '</span>perf <span class="built_in">help</span> COMMAND<span class="string">' for more information on a specific command.</span></span><br></pre></td></tr></table></figure>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -555,6 +556,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="perf-使用"><a href="#perf-使用" class="headerlink" title="perf 使用"></a>perf 使用</h2><p>系统级性能优化通常包括两个阶段：性能剖析（performance profiling）和代码优化。</p>
 <p>性能剖析的目标是寻找性能瓶颈，查找引发性能问题的原因及热点代码。</p>
 <p>代码优化的目标是针对具体性能问题而优化代码或编译选项，以改善软件性能。</p>
@@ -580,7 +582,7 @@
 -c, --scale           scale/normalize counters
 -D, --delay &lt;n&gt;       ms to wait before starting measurement after program start
 -d, --detailed        detailed run - start a lot of events
--e, --event &lt;event&gt;   event selector. use &apos;perf list&apos; to list available events
+-e, --event &lt;event&gt;   event selector. use &#39;perf list&#39; to list available events
 -G, --cgroup &lt;name&gt;   monitor event in cgroup name only
 -g, --group           put the counters into a counter group
 -I, --interval-print &lt;n&gt;
@@ -614,7 +616,7 @@
 <p>perf record 常用参数：</p>
 <ul>
 <li>-e record指定PMU事件</li>
-<li>–filter  event事件过滤器</li>
+<li>—filter  event事件过滤器</li>
 <li>-a  录取所有CPU的事件</li>
 <li>-p  录取指定pid进程的事件</li>
 <li>-o  指定录取保存数据的文件名</li>
@@ -625,7 +627,7 @@
 <ul>
 <li>-i  导入的数据文件名称，如果没有则默认为perf.data</li>
 <li>-g  生成函数调用关系图，<strong>此时内核要打开CONFIG_KALLSYMS；用户空间库或者执行文件需要带符号信息(not stripped)，编译选项需要加上-g。</strong></li>
-<li>–sort  从更高层面显示分类统计信息，比如： pid, comm, dso, symbol, parent, cpu,socket, srcline, weight, local_weight.</li>
+<li>—sort  从更高层面显示分类统计信息，比如： pid, comm, dso, symbol, parent, cpu,socket, srcline, weight, local_weight.</li>
 </ul>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>还有很多功能，带后续慢慢挖掘。</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/arnoldlu/p/6241297.html" target="_blank" rel="noopener">https://www.cnblogs.com/arnoldlu/p/6241297.html</a></p>
@@ -784,7 +786,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -806,7 +808,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -893,7 +895,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.1k字</span>
+  <span class="post-count">博客全站共24.4k字</span>
 </div>
 
 <div>

@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="晃晃的博客">
 <meta property="og:description" content="摘要虽然对于无约束人脸检测取得了巨大进步，但是精度和速度依然是一个挑战。作者提出一种鲁棒的single-stage人脸检测器，加入extra-supervised和self-supervised模块，提高人脸检测性能的多任务学习方法。论文主要贡献有５点：  手动标注WIDER FACE数据集人脸关键点，并且在难人脸检测上由于额外监督信号的帮助取得了巨大的提高。 在现有的模块上并行加入self-su">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T00:37:16.059Z">
+<meta property="og:updated_time" content="2019-05-29T03:17:20.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PaperReading:RetinaFace">
 <meta name="twitter:description" content="摘要虽然对于无约束人脸检测取得了巨大进步，但是精度和速度依然是一个挑战。作者提出一种鲁棒的single-stage人脸检测器，加入extra-supervised和self-supervised模块，提高人脸检测性能的多任务学习方法。论文主要贡献有５点：  手动标注WIDER FACE数据集人脸关键点，并且在难人脸检测上由于额外监督信号的帮助取得了巨大的提高。 在现有的模块上并行加入self-su">
@@ -444,11 +444,9 @@
 <p><strong>Two-stage v.s. single-stage</strong></p>
 <p><strong>Context Modelling</strong></p>
 <p><strong>Multi-task Learning</strong></p>
-<h2 id="RetinaFace"><a href="#RetinaFace" class="headerlink" title="RetinaFace"></a>RetinaFace</h2><h3 id="多任务损失函数"><a href="#多任务损失函数" class="headerlink" title="多任务损失函数"></a>多任务损失函数</h3><p>$$<br>L = L_{cls}(p_i ,p^∗_i) + λ_1p^∗_iL_{box}(t_i,t^∗_i)</p>
-<ul>
-<li>λ_2p^∗_iL_{pts}(l_i,l_i^∗) + λ_3p^∗_iL_{pixel}<br>$$</li>
-</ul>
-<p>其中Lcls代表分类损失，softmax，pi表示anchor i预测为人脸的概率，p*为１表示为正样本，为０表示负样本。</p>
+<h2 id="RetinaFace"><a href="#RetinaFace" class="headerlink" title="RetinaFace"></a>RetinaFace</h2><h3 id="多任务损失函数"><a href="#多任务损失函数" class="headerlink" title="多任务损失函数"></a>多任务损失函数</h3><script type="math/tex; mode=display">
+L = L_{cls}(p_i ,p^∗_i) + λ_1p^∗_iL_{box}(t_i,t^∗_i)
++ λ_2p^∗_iL_{pts}(l_i,l_i^∗) + λ_3p^∗_iL_{pixel}</script><p>其中Lcls代表分类损失，softmax，pi表示anchor i预测为人脸的概率，p*为１表示为正样本，为０表示负样本。</p>
 <p>其中Lbox为边框回归损失，smooth-L1，t i = {t x , t y , t w , t h }，对中心点和宽高进行归一化操作，对于正样本anchor的损失。</p>
 <p>其中L pts为５个关键点回归，类似边框回归中的中心点回归。</p>
 <p>其中L pixel为密集回归损失函数，具体函数见后面。</p>
@@ -607,7 +605,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -629,7 +627,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -716,7 +714,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.1k字</span>
+  <span class="post-count">博客全站共24.4k字</span>
 </div>
 
 <div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-05-29T02:36:19.790Z</updated>
+  <updated>2019-06-06T10:30:32.856Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CUDA页锁定内存</title>
+    <link href="https://clancylian.github.io/2019/06/06/CUDA%E9%A1%B5%E9%94%81%E5%AE%9A%E5%86%85%E5%AD%98/"/>
+    <id>https://clancylian.github.io/2019/06/06/CUDA页锁定内存/</id>
+    <published>2019-06-06T03:07:43.000Z</published>
+    <updated>2019-06-06T10:30:32.856Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;CUDA提供API可以来分配和使用页锁定主机内存(page-locked memory or pinned
+        
+      
+    
+    </summary>
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/categories/CUDA/"/>
+    
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/tags/CUDA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>opencv CUDA核函数学习</title>
+    <link href="https://clancylian.github.io/2019/05/29/opencv-CUDA%E6%A0%B8%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://clancylian.github.io/2019/05/29/opencv-CUDA核函数学习/</id>
+    <published>2019-05-29T03:44:17.000Z</published>
+    <updated>2019-06-04T01:16:23.849Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/categories/CUDA/"/>
+    
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/tags/CUDA/"/>
+    
+      <category term="OpenCV" scheme="https://clancylian.github.io/tags/OpenCV/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CUDA Grid Block Thread</title>
     <link href="https://clancylian.github.io/2019/05/28/CUDA-Grid-Block-Thread/"/>
     <id>https://clancylian.github.io/2019/05/28/CUDA-Grid-Block-Thread/</id>
     <published>2019-05-28T08:37:33.000Z</published>
-    <updated>2019-05-29T02:36:19.790Z</updated>
+    <updated>2019-06-06T09:25:15.578Z</updated>
     
     <summary type="html">
     
@@ -75,7 +129,7 @@
     <link href="https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/"/>
     <id>https://clancylian.github.io/2019/05/10/PaperReading-RetinaNet/</id>
     <published>2019-05-10T06:07:25.000Z</published>
-    <updated>2019-05-29T03:06:03.591Z</updated>
+    <updated>2019-05-29T03:17:08.482Z</updated>
     
     <summary type="html">
     
@@ -101,7 +155,7 @@
     <link href="https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/"/>
     <id>https://clancylian.github.io/2019/05/07/PaperReading-RetinaFace/</id>
     <published>2019-05-07T06:17:11.000Z</published>
-    <updated>2019-05-13T00:37:16.059Z</updated>
+    <updated>2019-05-29T03:17:20.514Z</updated>
     
     <summary type="html">
     
@@ -127,7 +181,7 @@
     <link href="https://clancylian.github.io/2019/05/05/PaperReading:FaceBoxes/"/>
     <id>https://clancylian.github.io/2019/05/05/PaperReading:FaceBoxes/</id>
     <published>2019-05-05T05:59:36.000Z</published>
-    <updated>2019-05-05T08:23:39.776Z</updated>
+    <updated>2019-05-29T03:17:31.974Z</updated>
     
     <summary type="html">
     
