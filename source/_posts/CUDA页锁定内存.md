@@ -126,144 +126,49 @@ for (int i = 0; i < 2; ++i)
 
 为了防止调用cudaStreamDestroy()的时候设备还在工作，当调用销毁函数的时候，立即返回，并且和流相关的资源会在设备完成所有工作后自动释放。
 
-当流设置成zero或者NULL的时候，或者不指定参数的时候                                  
+当流设置成zero或者NULL的时候，或者不指定参数的时候，就会使用默认流，这时候就按顺序执行了。如果在编译的时候使用**--default-stream**标志或者在包含CUDA头文件之前定义宏**CUDA_API_PER_THREAD_DEFAULT_STREAM**，那么每个主机线程会有自己的默认流。           
 
-### [3.2.5.5.2. Default Stream](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#default-stream)
+显式同步流的方式有很多方法：cudaDeviceSynchronize() 会等待所有正在处理的stream完成；cudaStreamSynchronize()会等待指定的流完成，允许其他的流继续执行。cudaStreamWaitEvent()会等待指定的事件完成才会继续执行。cudaStreamQuery()可以查询流是否执行完。为了避免性能下降，同步函数最好在计时或者隔离失败的启动或内存拷贝。                                               
 
-Kernel launches and host <-> device memory                                     copies that do not specify any stream parameter, or equivalently that set                                     the stream parameter to zero, are issued to the default stream. They are                                     therefore executed in order.                                  
+隐式同步：如果主机线程在来自不同流的两个命令之间发出以下任何一个操作，则它们不能并发运行：
 
-​                                     For code that is compiled using the --default-stream per-thread compilation flag (or that defines the CUDA_API_PER_THREAD_DEFAULT_STREAM macro before including CUDA headers (cuda.h and cuda_runtime.h)), the default stream is a regular stream and                                     each host thread has its own default stream.                                                                       
+- 页锁定主机内存的分配
 
-For code that is compiled using the --default-stream legacy compilation flag, the default stream is a special stream called the NULL stream                                     and each device has a single NULL  stream used for all host threads. The NULL stream is special as it  causes implicit synchronization                                     as described in                                     [Implicit Synchronization](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#implicit-synchronization).                                                                       
+- 设备内存的分配
 
-For code that is compiled without specifying a --default-stream compilation flag, --default-stream legacy is assumed as the default.                                                                       
+- 设备内存设置（memset）
 
-​                                  
+- 两个不同地址拷贝到相同设备地址
 
-### [3.2.5.5.3. Explicit Synchronization](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#explicit-synchronization)
+- 使用NULL流
 
-There are various ways to explicitly synchronize streams with each other.
+流中的回调函数不能调用CUDA API否则会造成死锁；流可以设置优先级。
 
-cudaDeviceSynchronize() waits until all preceding                                     commands in all streams of all host threads have completed.                                  
+### 事件(Events)
 
-cudaStreamSynchronize()takes a stream as a parameter                                     and waits until all preceding commands in the given stream have                                     completed. It can be used to synchronize the host with a specific stream,                                     allowing other streams to continue executing on the device.                                  
-
-cudaStreamWaitEvent()takes a stream and an event as                                     parameters (see [Events](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#events) for a description of events)and                                     makes all the commands added to the given stream after the call to                                     cudaStreamWaitEvent()delay their execution until the                                     given event has completed. The stream can be 0, in which case all the                                     commands added to any stream after the call to                                     cudaStreamWaitEvent()wait on the event.                                  
-
-cudaStreamQuery()provides applications with a way to                                     know if all preceding commands in a stream have completed.                                  
-
-To avoid unnecessary slowdowns, all these synchronization functions are                                     usually best used for timing purposes or to isolate a launch or memory                                     copy that is failing.                                  
-
-​                                  
-
-### [3.2.5.5.4. Implicit Synchronization](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#implicit-synchronization)
-
-Two commands from different streams cannot run concurrently if any one of the following                                     operations is issued in-between them by the host thread:                                                                       
-
-- a page-locked host memory allocation,
-- a device memory allocation,
-- a device memory set,
-- a memory copy between two addresses to the same device memory,
-- any CUDA command to the NULL stream,
-- ​                                        a switch between the L1/shared memory configurations described in [Compute Capability 3.x](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capability-3-0) and [Compute Capability 7.x](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capability-7-x).                                                                             
-
-For devices that support concurrent kernel execution and are of compute capability 3.0 or                                     lower, any operation that requires a dependency check to see if a streamed kernel launch                                     is complete:                                   
-
-- Can start executing only when all thread blocks of all prior kernel launches from any stream                                        in the CUDA context have started executing;                                                                             
-- Blocks all later kernel launches from any stream in the CUDA context until the kernel launch                                        being checked is complete.                                                                             
-
-Operations that require a dependency check include any other commands within the same stream as                                     the launch being checked and any call to cudaStreamQuery()  on that                                     stream. Therefore, applications  should follow these guidelines to improve their potential for                                     concurrent kernel execution:                                                                       
-
-- All independent operations should be issued before dependent operations,
-- Synchronization of any kind should be delayed as long as possible.
-
-​                                  
-
-### [3.2.5.5.5. Overlapping Behavior](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#overlapping-behavior)
-
-The amount of execution overlap between two streams depends on the order in which the commands are issued to each stream and                                     whether or not the device supports overlap of data transfer and kernel execution (see [Overlap of Data Transfer and Kernel Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#overlap-of-data-transfer-and-kernel-execution)), concurrent kernel execution (see [Concurrent Kernel Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#concurrent-kernel-execution)), and/or concurrent data transfers (see [Concurrent Data Transfers](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#concurrent-data-transfers)).                                                                       
-
-For example, on devices that do not support concurrent data transfers, the two streams of the code sample of [Creation and Destruction](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#creation-and-destruction-streams)  do not overlap at all because the memory copy from host to device is  issued to stream[1] after the memory copy from device                                     to host is issued to stream[0], so  it can only start once the memory copy from device to host issued to  stream[0] has completed.                                     If the code is rewritten the  following way (and assuming the device supports overlap of data transfer  and kernel execution)                                                                       
-
-```
-for (int i = 0; i < 2; ++i)
-    cudaMemcpyAsync(inputDevPtr + i * size, hostPtr + i * size,
+```c++
+//事件创建
+cudaEvent_t start, stop;
+cudaEventCreate(&start);
+cudaEventCreate(&stop);
+//销毁
+cudaEventDestroy(start);
+cudaEventDestroy(stop);
+//计时
+cudaEventRecord(start, 0);
+for (int i = 0; i < 2; ++i) {
+    cudaMemcpyAsync(inputDev + i * size, inputHost + i * size,
                     size, cudaMemcpyHostToDevice, stream[i]);
-for (int i = 0; i < 2; ++i)
     MyKernel<<<100, 512, 0, stream[i]>>>
-          (outputDevPtr + i * size, inputDevPtr + i * size, size);
-    for (int i = 0; i < 2; ++i)
-    cudaMemcpyAsync(hostPtr + i * size, outputDevPtr + i * size,
+               (outputDev + i * size, inputDev + i * size, size);
+    cudaMemcpyAsync(outputHost + i * size, outputDev + i * size,
                     size, cudaMemcpyDeviceToHost, stream[i]);
-```
-
-then the memory copy from host to device issued to stream[1] overlaps with the kernel launch issued to stream[0].
-
-On devices that do support concurrent data transfers, the two streams of the code sample                                     of [Creation and Destruction](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#creation-and-destruction-streams) do overlap: The memory copy from                                     host to device issued to stream[1] overlaps with the memory copy from device to host                                     issued to stream[0] and even with the kernel launch issued to stream[0] (assuming the                                     device supports overlap of data transfer and kernel execution). However, for devices of                                     compute capability 3.0 or lower, the kernel executions cannot possibly overlap because                                     the second kernel launch is issued to stream[1] after the memory copy from device to host                                     is issued to stream[0], so it is blocked until the first kernel launch issued to stream[0]                                     is complete as per [Implicit Synchronization](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#implicit-synchronization). If the code is rewritten                                     as above, the kernel executions overlap (assuming the device supports concurrent kernel                                     execution) since the second kernel launch is issued to stream[1] before the memory copy                                     from device to host is issued to stream[0]. In that case however, the memory copy from                                     device to host issued to stream[0] only overlaps with the last thread blocks of the                                     kernel launch issued to stream[1] as per [Implicit Synchronization](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#implicit-synchronization), which                                     can represent only a small portion of the total execution time of the kernel.                                   
-
-​                                  
-
-### [3.2.5.5.6. Callbacks](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#stream-callbacks)
-
-​                                     The runtime provides a way to insert a callback at any point into a stream via cudaStreamAddCallback().  A callback is a function that is executed on the host once all commands  issued to the stream before the callback have completed.                                     Callbacks in stream 0 are executed  once all preceding tasks and commands issued in all streams before the  callback have completed.                                                                       
-
-​                                     The following code sample adds the callback function                                     MyCallback to each of two streams                                     after issuing a host-to-device memory copy, a kernel launch and a                                     device-to-host memory copy into each stream. The callback will                                     begin execution on the host after each of the device-to-host memory                                     copies completes.                                                                       
-
-```
-void CUDART_CB MyCallback(cudaStream_t stream, cudaError_t status, void *data){
-    printf("Inside callback %d\n", (size_t)data);
 }
-...
-for (size_t i = 0; i < 2; ++i) {
-    cudaMemcpyAsync(devPtrIn[i], hostPtr[i], size, cudaMemcpyHostToDevice, stream[i]);
-    MyKernel<<<100, 512, 0, stream[i]>>>(devPtrOut[i], devPtrIn[i], size);
-    cudaMemcpyAsync(hostPtr[i], devPtrOut[i], size, cudaMemcpyDeviceToHost, stream[i]);
-    cudaStreamAddCallback(stream[i], MyCallback, (void*)i, 0);
-}
-        
+cudaEventRecord(stop, 0);
+cudaEventSynchronize(stop);
+float elapsedTime;
+cudaEventElapsedTime(&elapsedTime, start, stop);
 ```
-
-​                                     The commands that are issued in a  stream (or all commands issued to any stream if the callback is issued  to stream 0) after                                     a callback do not start executing  before the callback has completed.                                     The last parameter of cudaStreamAddCallback() is reserved for future use.                                                                       
-
-​                                     A callback must not make CUDA API  calls (directly or indirectly), as it might end up waiting on itself if  it makes such a                                     call leading to a deadlock.                                                                        
-
-
-
-​                                  
-
-### [3.2.5.5.7. Stream Priorities](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#stream-priorities)
-
- The relative priorities of streams can be specified at creation using cudaStreamCreateWithPriority(). The range of allowable priorities, ordered as [ highest priority, lowest priority ] can be obtained using the cudaDeviceGetStreamPriorityRange() function. At runtime, as blocks in low-priority schemes finish, waiting blocks in higher-priority streams are scheduled in                                     their place.                                     	                                  
-
- The following code sample obtains the allowable range of priorities for the current device, and creates streams with the                                     highest and lowest available priorities                                     	                                  
-
-```
-// get the range of stream priorities for this device
-int priority_high, priority_low;
-cudaDeviceGetStreamPriorityRange(&priority_low, &priority_high);
-// create streams with highest and lowest available priorities
-cudaStream_t st_high, st_low;
-cudaStreamCreateWithPriority(&st_high, cudaStreamNonBlocking, priority_high);
-cudaStreamCreateWithPriority(&st_low, cudaStreamNonBlocking, priority_low);
-```
-
-
-
-
-
-​                                                                
-
-
-
-
-
-## 统一虚拟地址(VUA)
-
-
-
-
-
-
 
 ## 参考链接
 
