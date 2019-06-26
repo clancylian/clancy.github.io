@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CUDA,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="晃晃的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="介绍设备是否支持统一内存可以通过一下代码查询： 12345678910//如果支持，unifiedAddressing字段为1int deviceCount;cudaGetDeviceCount(&amp;amp;deviceCount);int device;for (device = 0; device &amp;lt; deviceCount; ++device) &amp;#123;    cudaDeviceP">
+<meta name="keywords" content="CUDA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA统一内存UVA">
+<meta property="og:url" content="https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/index.html">
+<meta property="og:site_name" content="晃晃的博客">
+<meta property="og:description" content="介绍设备是否支持统一内存可以通过一下代码查询： 12345678910//如果支持，unifiedAddressing字段为1int deviceCount;cudaGetDeviceCount(&amp;amp;deviceCount);int device;for (device = 0; device &amp;lt; deviceCount; ++device) &amp;#123;    cudaDeviceP">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-26T03:49:45.811Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CUDA统一内存UVA">
+<meta name="twitter:description" content="介绍设备是否支持统一内存可以通过一下代码查询： 12345678910//如果支持，unifiedAddressing字段为1int deviceCount;cudaGetDeviceCount(&amp;amp;deviceCount);int device;for (device = 0; device &amp;lt; deviceCount; ++device) &amp;#123;    cudaDeviceP">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":2,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/">
+
+
+
+
+
+  <title>CUDA统一内存UVA | 晃晃的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/clancylian" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">晃晃的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Clancy Lian">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晃晃的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CUDA统一内存UVA</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T17:42:23+08:00">
+                2019-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CUDA/" itemprop="url" rel="index">
+                    <span itemprop="name">CUDA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/11/CUDA统一内存UVA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/11/CUDA统一内存UVA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+			
+		  
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>设备是否支持统一内存可以通过一下代码查询：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果支持，unifiedAddressing字段为1</span></span><br><span class="line"><span class="keyword">int</span> deviceCount;</span><br><span class="line">cudaGetDeviceCount(&amp;deviceCount);</span><br><span class="line"><span class="keyword">int</span> device;</span><br><span class="line"><span class="keyword">for</span> (device = <span class="number">0</span>; device &lt; deviceCount; ++device) &#123;</span><br><span class="line">    cudaDeviceProp deviceProp;</span><br><span class="line">    cudaGetDeviceProperties(&amp;deviceProp, device);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Device %d has compute capability %d.%d.\n"</span>,</span><br><span class="line">           device, deviceProp.major, deviceProp.minor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当应用程序是64位进程，并且主机和所有具有<a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#unified-virtual-address-space" target="_blank" rel="noopener">计算能力2.0</a>(<a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-unified-memory-programming-hd" target="_blank" rel="noopener">附录说的是3.0以上</a>)及更高版本的设备都使用一个地址空间，此时通过CUDA API分配的所有主机内存和所有受支持设备上开辟的设备内存都在此虚拟地址范围内。</p>
+<ul>
+<li>通过CUDA接口分配的主机内存或者任何使用统一地址空间的设备分配的设备内存都可以使用<strong>cudaPointerGetAttributes()</strong>的指针来确定地址。</li>
+<li>使用统一内存进行数据拷贝不需要执行拷贝类型，只需使用<strong>cudaMemcpyDefault</strong>，这同样适用于不使用CUDA API分配的主机内存，只要设备使用的是统一地址。</li>
+<li>如果使用统一地址空间，通过cudaHostAlloc()分配的页锁定主机内存会默认cudaHostAllocPortable，此时指针可以直接在内核函数使用，而无需像页锁定内存那样先通过cudaHostGetDevicePointer()函数获取设备指针。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">void</span> *ptr;</span><br><span class="line">   <span class="comment">//分配页锁定内存默认cudaHostAllocPortable，指针可以直接在核函数使用</span></span><br><span class="line">cudaHostAlloc(&amp;ptr, <span class="number">1000</span>, cudaHostAllocDefault);</span><br><span class="line">   <span class="comment">//分配统一内存</span></span><br><span class="line">   cudaMallocManaged(&amp;ptr, <span class="number">1000</span>);</span><br><span class="line">   <span class="comment">//host_ptr为malloc开辟的内存</span></span><br><span class="line">   <span class="built_in">memcpy</span>(ptr, host_ptr, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">//也可直接使用cudaMemcpy</span></span><br><span class="line">   cudaMemcpy(ptr, host_ptr, <span class="number">1000</span>, cudaMemcpyDefault);</span><br></pre></td></tr></table></figure>
+<p>统一内存是CUDA编程模型的一个组成部分，CUDA 6.0首次介绍了该模型，它定义了一个托管(managed)内存空间，其中所有处理器(包括CPU和GPU)都可以看到共同的地址空间。 </p>
+<p>通过让底层系统自己管理CUDA数据访问和位置，避免显式数据拷贝，这主要带来两方面好处：</p>
+<ul>
+<li>简化编程</li>
+<li>通过透明地将数据迁移到使用它的处理器，可以最大限度地提高数据访问速度。</li>
+</ul>
+<p>简单来说就是统一内存消除了显式数据拷贝并且不会像zero-copy那样带来性能下降(页锁定内存分配过多性能会下降)，当然数据迁移仍然会发生，所以程序速度不会明显加快，不过可以简化代码编写和维护。</p>
+<p>统一内存提供“单一指针”模型，这有点像zero-copy。主要不同点是零拷贝分配的内存是固定主机内存，程序的性能可能快也可能慢，这取决于从哪里访问。而统一内存分离内存和执行空间，所以数据访问很快。                      </p>
+<p>统一内存是一套内存管理服务的系统，该系统的一部分定义了加入统一内存服务的托管内存(managed memory)空间，换句话说，managed memory只是统一内存的一部分。</p>
+<p>统一内存可以像其他设备内存一样使用CUDA的任何操作，最主要的区别就是主机可以直接引用和访问统一内存。</p>
+<p>统一内存不支持附加在Tegra上的离散GPU。</p>
+<h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><ul>
+<li>SM架构是3.0(Kepler)或者更高</li>
+<li>64位程序并且是非嵌入式系统</li>
+</ul>
+<p>如果SM的架构是6.x(Pascal)或者更高，统一内存有新功能，如按需页面迁移和GPU内存超量分配(oversubscription)，请注意，目前只有Linux操作系统支持这些功能。在Windows（无论是在TCC或WDDM模式下）或MacOS上运行的应用程序将使用基本的统一内存模型，就像在6.x之前的体系结构上一样，即使它们运行在具有6.x或更高计算能力的硬件上。</p>
+<h3 id="简化编程"><a href="#简化编程" class="headerlink" title="简化编程"></a>简化编程</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">AplusB</span><span class="params">(<span class="keyword">int</span> *ret, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    ret[threadIdx.x] = a + b + threadIdx.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *ret;</span><br><span class="line">    <span class="comment">//第一种分配方式</span></span><br><span class="line">    cudaMallocManaged(&amp;ret, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    AplusB&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1000</span> &gt;&gt;&gt;(ret, <span class="number">10</span>, <span class="number">100</span>);</span><br><span class="line">    cudaDeviceSynchronize();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d: A+B = %d\n"</span>, i, ret[i]);</span><br><span class="line">    cudaFree(ret); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第二种分配方式</span></span><br><span class="line">__device__ __managed__ <span class="keyword">int</span> ret[<span class="number">1000</span>];</span><br><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">AplusB</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    ret[threadIdx.x] = a + b + threadIdx.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    AplusB&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1000</span> &gt;&gt;&gt;(<span class="number">10</span>, <span class="number">100</span>);</span><br><span class="line">    cudaDeviceSynchronize();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d: A+B = %d\n"</span>, i, ret[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码未使用cudaMemcpy()，所以未使用到隐式同步，所以需要做显式同步cudaDeviceSynchronize()。</p>
+<h3 id="数据迁移和一致性"><a href="#数据迁移和一致性" class="headerlink" title="数据迁移和一致性"></a>数据迁移和一致性</h3><p>统一内存试图通过将数据迁移到正在访问它的设备来优化内存性能（即，如果CPU正在访问数据，则将数据移动到主机内存；如果GPU将访问数据，则将数据移动到设备内存）。<strong>数据迁移是统一内存的基础</strong>，但对程序是透明的。系统将尝试将数据放置在可以最有效地访问数据的位置，而不会违反一致性。</p>
+<p>对于程序来说，数据的物理地址是不可见的，随时都可能变化，但是访问数据的虚拟地址是保持有效和一致。注意，在性能之前，<strong>保持一致性是主要要求</strong>；在主机操作系统的限制范围内，允许系统失败访问或移动数据，以保持处理器之间的全局一致性。</p>
+<p>计算能力低于6.x的GPU体系结构不支持按需将托管数据细粒度移动到GPU。每当启动GPU内核时，通常必须将所有托管内存(managed memory)传输到GPU内存，以避免内存访问出错。随着计算能力6.x到来，引入了一种新的GPU页面错误机制，提供更无缝的统一内存功能。结合系统范围的虚拟地址空间，页面错误提供了几个好处。首先，页面错误意味着CUDA系统软件不需要在每个内核启动之前将所有托管内存分配同步到GPU。如果在GPU上运行的内核访问一个不在其内存中的页面，那么它会出错，允许该页面按需自动迁移到GPU内存。或者，可以将页面映射到GPU地址空间，以便通过PCIe或NVLink互连进行访问（访问时的映射有时比迁移更快）。注意，统一内存是系统范围的：GPU（和CPU）可以在内存页上发生故障并从CPU内存或系统中其他GPU的内存迁移内存页。</p>
+<h3 id="显存超量分配"><a href="#显存超量分配" class="headerlink" title="显存超量分配"></a>显存超量分配</h3><p>计算能力低于6.x的设备无法分配比显存的物理大小更多的托管内存。具有计算能力6.x的设备扩展了寻址模式以支持49位虚拟寻址。它的大小足以覆盖现代CPU的48位虚拟地址空间，以及GPU显存。巨大的虚拟地址空间和页面错误功能使应用程序能够访问整个系统虚拟内存，而不受任何一个处理器的物理内存大小的限制。这意味着应用程序可以超额订阅内存系统：换句话说，它们可以分配、访问和共享大于系统总物理容量的数组，从而实现超大型数据集的核心外处理。只要有足够的系统内存可供分配，cudaMallocManaged就不会耗尽内存。 </p>
+<h3 id="多GPU设备"><a href="#多GPU设备" class="headerlink" title="多GPU设备"></a>多GPU设备</h3><p>对于计算能力低于6.x的设备来说，managed memory分配的行为和其他非managed内存一样，内存分配实际物理地址是当前活动设备，其他GPU设备都接收相同的内存映射。这意味着其他GPU将通过PCIe总线以较低的带宽访问内存。如果系统中的GPU之间不支持对等映射，那么托管内存页将放置在CPU系统内存（“零拷贝”内存）中，并且所有GPU都将遇到PCIe带宽限制。</p>
+<p>具有计算能力6.x设备的系统上的托管分配对所有GPU都可见，可以按需迁移到任何处理器。</p>
+<h3 id="系统分配器"><a href="#系统分配器" class="headerlink" title="系统分配器"></a><del>系统分配器</del><!--此部分特性基本用不到，暂不需要了解--></h3><p><del>计算能力7.0的设备支持NVLink上的地址转换服务（ATS）。ATS允许GPU直接访问CPU的页表。GPU MMU中的丢失将导致对CPU的地址转换请求（ATR）。CPU在其页表中查找该地址的虚拟到物理映射，并将转换返回到GPU。ATS提供对系统内存的GPU完全访问，例如分配malloc的内存、分配在堆栈上的内存、全局变量和文件备份内存。应用程序可以通过检查pageablememoryacessuseshostpagetables属性来查询设备是否支持通过ATS一致地访问可分页内存。</del></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前面介绍两种分配Managed内存方式，</span></span><br><span class="line"><span class="keyword">int</span> *data = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * n);</span><br><span class="line">kernel&lt;&lt;&lt;grid, block&gt;&gt;&gt;(data);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> data[<span class="number">1024</span>];</span><br><span class="line">kernel&lt;&lt;&lt;grid, block&gt;&gt;&gt;(data);</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> *data;</span><br><span class="line">kernel&lt;&lt;&lt;grid, block&gt;&gt;&gt;(data);</span><br></pre></td></tr></table></figure>
+<p><del>注：NVLink上的ATS目前仅在IBM Power9系统上受支持。</del></p>
+<h3 id="硬件一致性"><a href="#硬件一致性" class="headerlink" title="硬件一致性"></a>硬件一致性</h3><p>第二代NVLink允许CPU直接加载、存储、原子访问每个GPU的内存。结合新的CPU控制功能，NVLink支持一致性操作，允许从GPU内存读取的数据存储在CPU的缓存层次结构中。从CPU缓存访问的较低延迟是CPU性能的关键。计算能力6.x的设备只支持对等的GPU原子。具有计算能力7.x的设备可以通过NVLink发送GPU原子并在目标CPU上完成它们，因此第二代NVLink增加了对由GPU或CPU启动的原子的支持。</p>
+<p>注意，cudaMalloc分配内存不能从CPU访问。因此，为了利用硬件一致性，用户必须使用统一的内存分配器，如cudaMallocManaged或具有ATS支持的系统分配器（请参阅系统分配器）。新的属性directmanagedmeaccessfromhost指示主机是否可以在不迁移的情况下直接访问设备上的托管内存。默认情况下，CPU访问的cudaMallocManaged分配的驻留在GPU的内存都将触发页面错误和数据迁移。应用程序可以使用cudamemadvisesetacaccessedby性能提示和cudapudeviceid，以便在支持的系统上直接访问GPU内存。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">int</span> *ret, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    ret[threadIdx.x] = a + b + threadIdx.x;</span><br><span class="line">&#125;</span><br><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">append</span><span class="params">(<span class="keyword">int</span> *ret, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    ret[threadIdx.x] += a + b + threadIdx.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *ret;</span><br><span class="line">    cudaMallocManaged(&amp;ret, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    cudaMemAdvise(ret, <span class="number">1000</span> * <span class="keyword">sizeof</span>(<span class="keyword">int</span>), cudaMemAdviseSetAccessedBy, cudaCpuDeviceId);       <span class="comment">// set direct access hint</span></span><br><span class="line"></span><br><span class="line">    write&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1000</span> &gt;&gt;&gt;(ret, <span class="number">10</span>, <span class="number">100</span>);            <span class="comment">// pages populated in GPU memory</span></span><br><span class="line">    cudaDeviceSynchronize();</span><br><span class="line">    <span class="comment">//如果directManagedMemAccessFromHost=1，不会发生数据迁移</span></span><br><span class="line">    <span class="comment">//如果directManagedMemAccessFromHost=0，发生错误并触发device-to-host数据迁移</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d: A+B = %d\n"</span>, i, ret[i]);      </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果directManagedMemAccessFromHost=1，不会发生数据迁移</span></span><br><span class="line">    <span class="comment">//如果directManagedMemAccessFromHost=0，发生错误并触发host-to-device数据迁移        </span></span><br><span class="line">    append&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1000</span> &gt;&gt;&gt;(ret, <span class="number">10</span>, <span class="number">100</span>);   </span><br><span class="line">    cudaDeviceSynchronize();                     </span><br><span class="line">    cudaFree(ret); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="访问计数器"><a href="#访问计数器" class="headerlink" title="访问计数器"></a>访问计数器</h3><p>具有计算能力7.0的设备引入了一种新的访问计数器功能，可以跟踪GPU对位于其他处理器上的内存的访问频率。访问计数器有助于确保将内存页移到访问页最频繁的处理器的物理内存中。访问计数器功能可以指导CPU和GPU之间以及对等GPU之间的迁移。 </p>
+<p>对于cudaMallocManaged，可以通过使用cudamemadvisesetacessedby和相应的设备ID来选择使用访问计数器迁移。驱动程序还可以使用访问计数器来更有效地缓解震荡或内存超额订阅情况。 </p>
+<p>注意：访问计数器当前仅在IBM POWER9系统上启用，并且仅对cudaMallocManaged分配器启用。 </p>
+<h2 id="编程模型"><a href="#编程模型" class="headerlink" title="编程模型"></a>编程模型</h2><h3 id="Managed-memory"><a href="#Managed-memory" class="headerlink" title="Managed memory"></a>Managed memory</h3><p>大多数平台需要使用<strong> device </strong> 和 <strong> managed </strong>关键字或者使用cudaMallocManaged()函数开辟统一内存来自动管理数据。计算能力低于6.x的设备必须始终使用分配器或通过声明全局存储在堆上分配托管内存。不能将以前分配的内存与统一内存相关联，也不能让统一内存系统管理CPU或GPU堆栈指针。从CUDA 8.0开始，在具有计算能力6.x设备的<strong>支持系统</strong>上，可以使用同一指针从GPU代码和CPU代码访问分配给默认OS分配器（例如malloc或new）的内存。在这些系统上，统一内存是默认的：不需要使用特殊的分配器或创建特殊管理的内存池。 </p>
+<h3 id="一致性与并发"><a href="#一致性与并发" class="headerlink" title="一致性与并发"></a>一致性与并发</h3><ol>
+<li>对于计算能力低于6.x的设备来说，不能同时访问managed memory，因为不能保证数据的一致性，可能GPU正在操作的时候刚好CPU访问，会造成错误数据。对于计算能力6.x并且支持的设备由于引入了页面错误机制所以可以同时访问统一内存，可以查询concurrentManagedAccess是否支持并发访问。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">__device__ __managed__ <span class="keyword">int</span> x, y=<span class="number">2</span>;</span><br><span class="line">__<span class="function">global__  <span class="keyword">void</span>  <span class="title">kernel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    x = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    kernel&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1</span> &gt;&gt;&gt;();</span><br><span class="line">    <span class="comment">//如果同步函数放在这里就不会出错</span></span><br><span class="line">    y = <span class="number">20</span>;            <span class="comment">// Error on GPUs not supporting concurrent access</span></span><br><span class="line">                       </span><br><span class="line">    cudaDeviceSynchronize();</span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于计算能力6.x之前的架构来说，当GPU正在执行的时候，使用CPU访问会发生段错误，如上代码所示。实际上，当任何内核操作正在执行时，GPU都可以<strong>独占访问所有托管数据</strong>，而不管特定的内核是否在积极地使用这些数据。从上面可以看到即使GPU使用的是x变量，CPU访问的是y变量，访问不同数据也会出错。 </p>
+<p>注意，在上面的例子中，即使内核运行得很快并且在CPU接触Y之前完成，也需要显式同步。统一内存使用逻辑活动来确定GPU是否空闲。这与CUDA编程模型一致，CUDA编程模型指定内核可以在启动后的任何时间运行，并且在主机发出同步调用之前，不保证已经完成。</p>
+<p>2.逻辑上保证GPU完成其工作的任何函数调用都是有效的。这包括cudaDeviceSynchronize()；cudaStreamSynchronize() and cudaStreamQuery()（前提是它返回cudaSuccess而不是cudaErrorNotReady），其中指定的流是在GPU上仍在执行的<strong>唯一流</strong>；cudaEventSynchronize()和cudaEventQuery()在指定事件后面没有任何设备工作的情况下；以及使用记录为与主机完全同步的cudaMemcpy() 和cudaMemset()。</p>
+<p>CPU从流回调中访问托管数据是合法的，前提是GPU上没有其他可能正在访问托管数据的流处于活动状态。此外，没有任何设备工作的回调可用于同步：例如，通过从回调内部发出条件变量的信号；否则，CPU访问仅在回调期间有效。</p>
+<p>注意以下几点： </p>
+<ul>
+<li>总是允许CPU在GPU处于活动状态时访问非托管零拷贝数据。 </li>
+<li>GPU在运行任何内核时都被认为是活动的，即使该内核不使用托管数据。如果内核可能使用数据，则禁止访问，除非设备属性ConcurrentManagedAccess为1。 </li>
+<li>除了应用于非托管内存的多GPU访问之外，对托管内存的并发GPU访问没有限制。 </li>
+<li>对访问托管数据的并发GPU内核没有约束。 </li>
+</ul>
+<p>具体如下代码所示</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cudaStream_t stream1, stream2;</span><br><span class="line">    cudaStreamCreate(&amp;stream1);</span><br><span class="line">    cudaStreamCreate(&amp;stream2);</span><br><span class="line">    <span class="keyword">int</span> *non_managed, *managed, *also_managed;</span><br><span class="line">    cudaMallocHost(&amp;non_managed, <span class="number">4</span>);    <span class="comment">// Non-managed, CPU-accessible memory</span></span><br><span class="line">    cudaMallocManaged(&amp;managed, <span class="number">4</span>);</span><br><span class="line">    cudaMallocManaged(&amp;also_managed, <span class="number">4</span>);</span><br><span class="line">    <span class="comment">// Point 1: CPU can access non-managed data.</span></span><br><span class="line">    kernel&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, stream1 &gt;&gt;&gt;(managed);</span><br><span class="line">    *non_managed = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// Point 2: CPU cannot access any managed data while GPU is busy,</span></span><br><span class="line">    <span class="comment">//          unless concurrentManagedAccess = 1</span></span><br><span class="line">    <span class="comment">// Note we have not yet synchronized, so "kernel" is still active.</span></span><br><span class="line">    *also_managed = <span class="number">2</span>;      <span class="comment">// Will issue segmentation fault</span></span><br><span class="line">    <span class="comment">// Point 3: Concurrent GPU kernels can access the same data.</span></span><br><span class="line">    kernel&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, stream2 &gt;&gt;&gt;(managed);</span><br><span class="line">    <span class="comment">// Point 4: Multi-GPU concurrent access is also permitted.</span></span><br><span class="line">    cudaSetDevice(<span class="number">1</span>);</span><br><span class="line">    kernel&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1</span> &gt;&gt;&gt;(managed);</span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.之前介绍的都是GPU会占用整个托管内存，为了更细粒度的访问托管内存，CUDA提供函数可以将托管内存和特定的流绑定在一起，这样，只要这个流执行完，CPU就可以访问，而不用管其他流是否以及完成。如果没绑定的话，那么整个托管内存对GPU都是可见的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">__device__ __managed__ <span class="keyword">int</span> x, y=<span class="number">2</span>;</span><br><span class="line">__<span class="function">global__  <span class="keyword">void</span>  <span class="title">kernel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    x = <span class="number">10</span>;</span><br><span class="line">    <span class="comment">//在内核访问y会产生未定义</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cudaStream_t stream1;</span><br><span class="line">    cudaStreamCreate(&amp;stream1);</span><br><span class="line">    <span class="comment">//将y和主机可访问关联在一起，　这样做有什么用？？如果内核不能访问了还不如开辟主机内存？？</span></span><br><span class="line">    cudaStreamAttachMemAsync(stream1, &amp;y, <span class="number">0</span>, cudaMemAttachHost);</span><br><span class="line">    cudaDeviceSynchronize();          <span class="comment">// Wait for Host attachment to occur.</span></span><br><span class="line">    kernel&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, stream1 &gt;&gt;&gt;(); <span class="comment">// Note: Launches into stream1.</span></span><br><span class="line">    y = <span class="number">20</span>;                           <span class="comment">// Success – a kernel is running but “y” </span></span><br><span class="line">                                      <span class="comment">// has been associated with no stream.</span></span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//=============================分割线==================================</span></span><br><span class="line"></span><br><span class="line">__device__ __managed__ <span class="keyword">int</span> x, y=<span class="number">2</span>;</span><br><span class="line">__<span class="function">global__  <span class="keyword">void</span>  <span class="title">kernel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    x = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cudaStream_t stream1;</span><br><span class="line">    cudaStreamCreate(&amp;stream1);</span><br><span class="line">    cudaStreamAttachMemAsync(stream1, &amp;x);<span class="comment">// Associate “x” with stream1.</span></span><br><span class="line">    cudaDeviceSynchronize();              <span class="comment">// Wait for “x” attachment to occur.</span></span><br><span class="line">    kernel&lt;&lt;&lt; <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, stream1 &gt;&gt;&gt;();     <span class="comment">// Note: Launches into stream1.</span></span><br><span class="line">    y = <span class="number">20</span>;                               <span class="comment">// ERROR: “y” is still associated globally </span></span><br><span class="line">                                          <span class="comment">// with all streams by default</span></span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>使用cudaStreamAttachMemAsync()的主要用途是可以让CPU线程并行执行独立的任务。每个CPU线程创建自己的流，这样不会造成使用默认流带来的依赖性问题，比如如果托管内存没有绑定特定的流，托管数据的默认全局可见性都会使多线程程序中的CPU线程之间的交互难以避免，那么每个CPU线程就会产生依赖，这会使程序的性能下降。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This function performs some task, in its own private stream.</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">run_task</span><span class="params">(<span class="keyword">int</span> *in, <span class="keyword">int</span> *out, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Create a stream for us to use.</span></span><br><span class="line">    cudaStream_t stream;</span><br><span class="line">    cudaStreamCreate(&amp;stream);</span><br><span class="line">    <span class="comment">// Allocate some managed data and associate with our stream.</span></span><br><span class="line">    <span class="comment">// Note the use of the host-attach flag to cudaMallocManaged();</span></span><br><span class="line">    <span class="comment">// we then associate the allocation with our stream so that</span></span><br><span class="line">    <span class="comment">// our GPU kernel launches can access it.</span></span><br><span class="line">    <span class="keyword">int</span> *data;</span><br><span class="line">    <span class="comment">//开辟的统一内存和特定流关联在一起，不会产生依赖</span></span><br><span class="line">    cudaMallocManaged((<span class="keyword">void</span> **)&amp;data, length, cudaMemAttachHost);</span><br><span class="line">    cudaStreamAttachMemAsync(stream, data);</span><br><span class="line">    cudaStreamSynchronize(stream);</span><br><span class="line">    <span class="comment">// Iterate on the data in some way, using both Host &amp; Device.</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++) &#123;</span><br><span class="line">        transform&lt;&lt;&lt; <span class="number">100</span>, <span class="number">256</span>, <span class="number">0</span>, stream &gt;&gt;&gt;(in, data, length);</span><br><span class="line">        cudaStreamSynchronize(stream);</span><br><span class="line">        host_process(data, length);    <span class="comment">// CPU uses managed data.</span></span><br><span class="line">        convert&lt;&lt;&lt; <span class="number">100</span>, <span class="number">256</span>, <span class="number">0</span>, stream &gt;&gt;&gt;(out, data, length);</span><br><span class="line">    &#125;</span><br><span class="line">    cudaStreamSynchronize(stream);</span><br><span class="line">    cudaStreamDestroy(stream);</span><br><span class="line">    cudaFree(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面代码中，cudaMallocManaged()函数指定了cudaMemAttachHost标志，该标志创建了一个最初对设备端执行不可见的分配（默认分配对所有流上的所有GPU内核都可见）。这确保在数据分配和绑定特定流获取数据之间的时间间隔内不会与另一个线程的执行发生意外交互。 </p>
+<p>如果没有这个标志，如果由另一个线程启动的内核恰好正在运行，则会考虑在GPU上使用新的分配。这可能会影响线程在能够显式地将其附加到私有流之前从CPU（例如，在基类构造函数内）访问新分配的数据的能力。因此，为了在线程之间实现安全的独立性，应该进行分配来指定这个标志。 </p>
+<p>注意：另一种方法是在分配附加到流之后，在所有线程上设置一个进程范围的屏障。这将确保所有线程在启动任何内核之前完成其数据/流关联，从而避免危险。在销毁流之前需要第二个屏障，因为流销毁会导致分配恢复到其默认可见性。cudaMemAttachHost标志的存在不仅是为了简化这个过程，而且因为在需要的地方不可能总是插入全局屏障。 </p>
+<p>4.由于托管内存可以从主机或设备访问，因此cudaMemcpy*()依赖于使用cudaMemcpyKind指定的传输类型来确定将数据作为主机指针或设备指针访问。</p>
+<p>如果使用cudaMemcpyHostTo函数，并且源数据是managed memory(源数据可以一致访问)，那么它将从主机访问；否则，它将从设备访问。这同样适用于cudaMemcpyToHost函数并且目标内存是managed memory。同理如果指定了cudaMemcpyDeviceTo并且源数据是managed memory(目标数据可以一致访问)，则将从设备访问它。这同样适用于cudaMemcpyToDevice()函数并且目标内存是managed memory。</p>
+<p>如果指定了cudaMemcpyDefault，则如果无法从设备一致访问托管数据，或者如果数据的首选位置是cudapudeviceid，并且可以从主机一致访问托管数据，则将从主机访问托管数据；否则，将从设备访问它。</p>
+<p>当对托管内存使用cudaMemset时，始终可以从设备访问数据。数据必须可以从设备一致的访问；否则，将返回错误。</p>
+<p>当通过cudamemcpy<em>或cudamemset</em>从设备访问数据时，操作流在GPU上被认为是活动的。在此期间，如果GPU的设备属性ConcurrentManagedAccess的值为零，则与该流或具有全局可见性的数据关联的任何CPU访问都将导致段错误。程序必须进行适当的同步，以确保在从CPU访问任何相关数据之前操作已经完成。</p>
+<p>（1）为了在给定流中从主机一致地访问托管内存，必须至少满足以下条件之一：</p>
+<ul>
+<li>与给定流关联的设备的设备属性ConcurrentManagedAccess具有非零值。</li>
+<li>内存既没有全局可见性，也没有与给定流关联。(开辟的时候使用cudaMemAttachHost标志)</li>
+</ul>
+<p>（2）对于在给定流中从设备一致地访问的托管内存，必须至少满足以下条件之一：</p>
+<ul>
+<li>设备的设备属性ConcurrentManagedAccess具有非零值。</li>
+<li>内存要么具有全局可见性，要么与给定的流相关联。</li>
+</ul>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-unified-memory-programming-hd" target="_blank" rel="noopener">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-unified-memory-programming-hd</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+	<div> 
+    
+    
+    <ul class="post-copyright">
+     <li class="post-copyright-author">
+      <strong>本文作者：</strong>Clancy Lian
+     </li>
+     <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+	  <a href="https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/" title="CUDA统一内存UVA">https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/</a>
+     </li>
+     <li class="post-copyright-license">
+      <strong>版权： </strong>
+      请勿用于商业，转载注明出处！
+     </li>
+    </ul>
+    
+    </div>
+	
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CUDA/" rel="tag"><i class="fa fa-tag"></i> CUDA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/06/CUDA页锁定内存/" rel="next" title="CUDA页锁定内存">
+                <i class="fa fa-chevron-left"></i> CUDA页锁定内存
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Clancy Lian">
+            
+              <p class="site-author-name" itemprop="name">Clancy Lian</p>
+              <p class="site-description motion-element" itemprop="description">我自风情万种，与世无争。</p>
+          </div>
+		  
+		  <div id="music163player">
+		    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=440759879&auto=1&height=66"></iframe>
+		  </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/clancylian" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="clancy.lian@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统要求"><span class="nav-text">系统要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简化编程"><span class="nav-text">简化编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据迁移和一致性"><span class="nav-text">数据迁移和一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显存超量分配"><span class="nav-text">显存超量分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多GPU设备"><span class="nav-text">多GPU设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统分配器"><span class="nav-text">系统分配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件一致性"><span class="nav-text">硬件一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问计数器"><span class="nav-text">访问计数器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编程模型"><span class="nav-text">编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Managed-memory"><span class="nav-text">Managed memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性与并发"><span class="nav-text">一致性与并发</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-text">参考链接</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Clancy Lian</span>
+
+  
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共28.8k字</span>
+</div>
+
+<div>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style="display:none">
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style="display:none">
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://clancylian.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/';
+          this.page.identifier = '2019/06/11/CUDA统一内存UVA/';
+          this.page.title = 'CUDA统一内存UVA';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://clancylian.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

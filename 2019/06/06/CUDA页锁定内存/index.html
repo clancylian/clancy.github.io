@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="晃晃的博客">
 <meta property="og:description" content="介绍CUDA提供API可以来分配和使用页锁定主机内存(page-locked memory or pinned memory)，和传统使用malloc分配的可分页内存不同。  使用cudaHostAlloc()和cudaFreeHost()来分配和释放页锁定内存。 或者使用cudaHostRegister()将malloc()分配的内存注册为页锁定内存。  页锁定内存好处和缺点好处 在页锁定内存和">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T09:51:26.191Z">
+<meta property="og:updated_time" content="2019-06-13T05:47:49.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CUDA页锁定内存">
 <meta name="twitter:description" content="介绍CUDA提供API可以来分配和使用页锁定主机内存(page-locked memory or pinned memory)，和传统使用malloc分配的可分页内存不同。  使用cudaHostAlloc()和cudaFreeHost()来分配和释放页锁定内存。 或者使用cudaHostRegister()将malloc()分配的内存注册为页锁定内存。  页锁定内存好处和缺点好处 在页锁定内存和">
@@ -470,7 +470,7 @@
 <li>数据在设备内拷贝</li>
 <li>内存从主机拷贝到设备的大小是64KB或者更小</li>
 <li>调用后缀为Async的内存拷贝函数，如cudaMemcpyAsync()</li>
-<li>调用内存设置函数，如cudaMemset()</li>
+<li>调用内存设置函数，<del>如cudaMemset()</del></li>
 </ul>
 <p>注：在调试的时候，可以将CUDA_LAUNCH_BLOCKING设置为1把所有的异步关闭。当使用性能分析工具的时候(Nsight, Visual Profiler)一般是同步状态除非分析工具允许并发。当使用的主机内存不是页锁定的时候，异步拷贝将会被同步。</p>
 <h3 id="多个内核并行执行"><a href="#多个内核并行执行" class="headerlink" title="多个内核并行执行"></a>多个内核并行执行</h3><p>一些计算性能为2.x或者更高的设备可以多个内核并发执行。具体可以使用如下方法查询concurrentKernels是否为1：</p>
@@ -557,6 +557,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/11/CUDA统一内存UVA/" rel="prev" title="CUDA统一内存UVA">
+                CUDA统一内存UVA <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -649,7 +653,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -758,7 +762,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.3k字</span>
+  <span class="post-count">博客全站共28.8k字</span>
 </div>
 
 <div>

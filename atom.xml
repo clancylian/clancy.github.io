@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-06-10T09:51:26.191Z</updated>
+  <updated>2019-06-26T03:49:45.811Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CUDA统一内存UVA</title>
+    <link href="https://clancylian.github.io/2019/06/11/CUDA%E7%BB%9F%E4%B8%80%E5%86%85%E5%AD%98UVA/"/>
+    <id>https://clancylian.github.io/2019/06/11/CUDA统一内存UVA/</id>
+    <published>2019-06-11T09:42:23.000Z</published>
+    <updated>2019-06-26T03:49:45.811Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;设备是否支持统一内存可以通过一下代码查询：&lt;/p&gt;
+&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/categories/CUDA/"/>
+    
+    
+      <category term="CUDA" scheme="https://clancylian.github.io/tags/CUDA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CUDA页锁定内存</title>
     <link href="https://clancylian.github.io/2019/06/06/CUDA%E9%A1%B5%E9%94%81%E5%AE%9A%E5%86%85%E5%AD%98/"/>
     <id>https://clancylian.github.io/2019/06/06/CUDA页锁定内存/</id>
     <published>2019-06-06T03:07:43.000Z</published>
-    <updated>2019-06-10T09:51:26.191Z</updated>
+    <updated>2019-06-13T05:47:49.053Z</updated>
     
     <summary type="html">
     
