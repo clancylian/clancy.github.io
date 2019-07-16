@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancylian.github.io/"/>
-  <updated>2019-06-26T03:49:45.811Z</updated>
+  <updated>2019-07-16T09:36:44.529Z</updated>
   <id>https://clancylian.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>目标检测论文汇总</title>
+    <link href="https://clancylian.github.io/2019/07/16/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E6%B1%87%E6%80%BB/"/>
+    <id>https://clancylian.github.io/2019/07/16/目标检测论文汇总/</id>
+    <published>2019-07-16T09:29:47.000Z</published>
+    <updated>2019-07-16T09:36:44.529Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;目标检测顶会论文学习笔记&quot;&gt;&lt;a href=&quot;#目标检测顶会论文学习笔记&quot; class=&quot;headerlink&quot; title=&quot;目标检测顶会论文学习笔记&quot;&gt;&lt;/a&gt;目标检测顶会论文学习笔记&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="目标检测" scheme="https://clancylian.github.io/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+    
+    
+      <category term="目标检测" scheme="https://clancylian.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>CUDA统一内存UVA</title>
